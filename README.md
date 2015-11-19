@@ -1,16 +1,16 @@
 # RouteOptimizer
 
 ### Colloborators
-- Toussiant Minett
+- Toussaint Minett
 - Aswani Nerella
 
-##### Description 
+##### Description
 * Route Optimizer helps users in optimizing the time spent by the users when they are on road. Eg: The app helps you in finding the suitable Gas station/Pharmacy which falls on the way from your office to home.
 * There are many real life applications for this, as travellers always want to run some errands on their way.
 
 #### User Stories #####
 #### MVP
-1)  Launch Screen: A simple screen with an icon/gif in the middle is presented to the user while we try to find out the location of the user in the background. 
+1)  Launch Screen: A simple screen with an icon/gif in the middle is presented to the user while we try to find out the location of the user in the background.
 
 2)  Search Screen: A Screen where the users enters his Start Location, end location & Search Term and Go button at the bottom
 
@@ -18,7 +18,7 @@
 
 2.b) Both Start & End Location - addresses need to be verified using Google APIs
 
-2.c) Search Term: fill in suggestions with Pharmacy or Gas. 
+2.c) Search Term: fill in suggestions with Pharmacy or Gas.
 
 3) Results Screen & Result Details: After performing a search, present the results with Name of the business with info about how many mins/distance off the route this route will take. 
 
@@ -29,6 +29,10 @@
 
 #### Additional Features
 1) Save Locations as favorites
-2) Settings screen 
+2) Settings screen
 
 
+![Alt text](Landing\ View.png "Landing View")
+![Alt text](Additional\ Locations.png "Additional Locations View")
+![Alt text](Location\ Details.png "Location Details View")
+![Alt text](Route\ View.png "Route View")
