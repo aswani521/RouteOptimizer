@@ -13,6 +13,8 @@
 		960ECF501BFEA20B00A50069 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF4E1BFEA20B00A50069 /* Main.storyboard */; };
 		960ECF521BFEA20B00A50069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF511BFEA20B00A50069 /* Assets.xcassets */; };
 		960ECF551BFEA20B00A50069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF531BFEA20B00A50069 /* LaunchScreen.storyboard */; };
+		96FECC6D1C057B2A00D410FA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FECC6C1C057B2A00D410FA /* MapKit.framework */; };
+		96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */; settings = {ASSET_TAGS = (); }; };
 		FE91E1CCEFE43636F5650391 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0F973324B421B4E11177CF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,9 @@
 		960ECF511BFEA20B00A50069 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		960ECF541BFEA20B00A50069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		960ECF561BFEA20B00A50069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96FECC6C1C057B2A00D410FA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		96FECC6E1C062A7D00D410FA /* DirectionsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsHelper.h; sourceTree = "<group>"; };
+		96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsHelper.m; sourceTree = "<group>"; };
 		E34AE9FAEDE0BE6238CD355E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -37,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96FECC6D1C057B2A00D410FA /* MapKit.framework in Frameworks */,
 				FE91E1CCEFE43636F5650391 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +80,8 @@
 				960ECF531BFEA20B00A50069 /* LaunchScreen.storyboard */,
 				960ECF561BFEA20B00A50069 /* Info.plist */,
 				960ECF451BFEA20B00A50069 /* Supporting Files */,
+				96FECC6E1C062A7D00D410FA /* DirectionsHelper.h */,
+				96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */,
 			);
 			path = RouteOptimizer;
 			sourceTree = "<group>";
@@ -98,6 +106,7 @@
 		EDCBF55204A513C86FF79816 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96FECC6C1C057B2A00D410FA /* MapKit.framework */,
 				0A0F973324B421B4E11177CF /* libPods.a */,
 			);
 			name = Frameworks;
@@ -225,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				960ECF4D1BFEA20B00A50069 /* ViewController.m in Sources */,
+				96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */,
 				960ECF4A1BFEA20B00A50069 /* AppDelegate.m in Sources */,
 				960ECF471BFEA20B00A50069 /* main.m in Sources */,
 			);
