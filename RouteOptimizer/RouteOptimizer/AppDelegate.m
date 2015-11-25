@@ -21,7 +21,7 @@
     // TODO !!!!!!!!!!!!!!!!!!!!!!REMOVE ME!!!!!!!!!!!!!!!!!!!
     // TODO !!!!!!!!!!!!!!!!!!!!!!REMOVE ME!!!!!!!!!!!!!!!!!!!
     // TODO !!!!!!!!!!!!!!!!!!!!!!REMOVE ME!!!!!!!!!!!!!!!!!!!
-    [GMSServices provideAPIKey:@"AIzaSyB79KWKGlTeIP1Dm1tEDp5gqEWJpIGbmjI"]; // Or just invalidate this key
+    [GMSServices provideAPIKey:@"AIzaSyBTSZYX4d4MNqYTEGmMpi7R4kCfLnnxbz4"]; // Or just invalidate this key
     // TODO !!!!!!!!!!!!!!!!!!!!!!REMOVE ME!!!!!!!!!!!!!!!!!!!
     // TODO !!!!!!!!!!!!!!!!!!!!!!REMOVE ME!!!!!!!!!!!!!!!!!!!
     // TODO !!!!!!!!!!!!!!!!!!!!!!REMOVE ME!!!!!!!!!!!!!!!!!!!
