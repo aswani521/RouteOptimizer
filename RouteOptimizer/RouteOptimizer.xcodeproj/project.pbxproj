@@ -15,6 +15,7 @@
 		960ECF551BFEA20B00A50069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF531BFEA20B00A50069 /* LaunchScreen.storyboard */; };
 		96FECC6D1C057B2A00D410FA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FECC6C1C057B2A00D410FA /* MapKit.framework */; };
 		96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */; settings = {ASSET_TAGS = (); }; };
+		AD0536671C06AA7A00C12D12 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0536661C06AA7A00C12D12 /* SearchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FE91E1CCEFE43636F5650391 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0F973324B421B4E11177CF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,8 @@
 		96FECC6C1C057B2A00D410FA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		96FECC6E1C062A7D00D410FA /* DirectionsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsHelper.h; sourceTree = "<group>"; };
 		96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsHelper.m; sourceTree = "<group>"; };
+		AD0536651C06AA7A00C12D12 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		AD0536661C06AA7A00C12D12 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		E34AE9FAEDE0BE6238CD355E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +79,8 @@
 				960ECF4B1BFEA20B00A50069 /* ViewController.h */,
 				960ECF4C1BFEA20B00A50069 /* ViewController.m */,
 				960ECF4E1BFEA20B00A50069 /* Main.storyboard */,
+				AD0536651C06AA7A00C12D12 /* SearchViewController.h */,
+				AD0536661C06AA7A00C12D12 /* SearchViewController.m */,
 				960ECF511BFEA20B00A50069 /* Assets.xcassets */,
 				960ECF531BFEA20B00A50069 /* LaunchScreen.storyboard */,
 				960ECF561BFEA20B00A50069 /* Info.plist */,
@@ -235,6 +240,7 @@
 			files = (
 				960ECF4D1BFEA20B00A50069 /* ViewController.m in Sources */,
 				96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */,
+				AD0536671C06AA7A00C12D12 /* SearchViewController.m in Sources */,
 				960ECF4A1BFEA20B00A50069 /* AppDelegate.m in Sources */,
 				960ECF471BFEA20B00A50069 /* main.m in Sources */,
 			);

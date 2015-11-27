@@ -41,7 +41,7 @@ NSString *const kDirectionsBaseUrl = @"https://maps.googleapis.com/maps/api/dire
             GMSPath *path = [GMSPath pathFromEncodedPath:encodedPath];
             polyline = [GMSPolyline polylineWithPath:path];
             polyline.strokeWidth = 7;
-            polyline.strokeColor = [UIColor purpleColor];
+            polyline.strokeColor = [UIColor blueColor];
         }
         completion(polyline, nil);
 
