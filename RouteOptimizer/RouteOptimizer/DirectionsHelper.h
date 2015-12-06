@@ -21,4 +21,6 @@
  */
 + (void)plotDirectionsGivenStart:(NSString *)start destination:(NSString *)end andSecondaryDestinations:(NSArray *)secondaryDestinations onComplete:(void (^)(GMSPolyline *line, NSError *error))completion;
 
++ (void)placeSearchWithText:(NSString *)text onComplete:(void (^)(NSArray *places, NSError *error))completion;
+
 @end

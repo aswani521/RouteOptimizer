@@ -10,7 +10,9 @@
 #import "AFNetworking.h"
 
 NSString *const kAPIKey = @"AIzaSyBTSZYX4d4MNqYTEGmMpi7R4kCfLnnxbz4";
+NSString *const kServKey = @"AIzaSyAWAI0SQ5XxgoeSpPUkKwGusCPU9iZdIHY";
 NSString *const kDirectionsBaseUrl = @"https://maps.googleapis.com/maps/api/directions/json";
+NSString *const kPlaceSearchBaseUrl = @"https://maps.googleapis.com/maps/api/place/textsearch/json";
 
 @interface DirectionsHelper ()
 
@@ -36,7 +38,13 @@ NSString *const kDirectionsBaseUrl = @"https://maps.googleapis.com/maps/api/dire
 
     [manager GET:directionsRequestUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         GMSPolyline *polyline;
-        NSString *encodedPath = responseObject[@"routes"][0][@"overview_polyline"][@"points"];
+        NSString *encodedPath;
+        NSArray *routes = responseObject[@"routes"];
+        
+        if (routes.count > 0) {
+            encodedPath = routes[0][@"overview_polyline"][@"points"];
+        }
+        
         if (encodedPath.length > 0) {
             GMSPath *path = [GMSPath pathFromEncodedPath:encodedPath];
             polyline = [GMSPolyline polylineWithPath:path];
@@ -50,5 +58,21 @@ NSString *const kDirectionsBaseUrl = @"https://maps.googleapis.com/maps/api/dire
         NSLog(@"Error: %@", error);
     }];
 }
+
++ (void)placeSearchWithText:(NSString *)text onComplete:(void (^)(NSArray *places, NSError *error))completion {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+
+    NSString *correctedText = [text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *placesSearchRequest = [NSString stringWithFormat:@"%@?query=%@&key=%@", kPlaceSearchBaseUrl, correctedText, kServKey];
+    [manager GET:placesSearchRequest parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+        //completion(responseObject[@"results"], nil);
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+        NSLog(@"Error: %@", error);
+    }];
+}
+
 
 @end
