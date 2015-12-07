@@ -21,8 +21,11 @@
 		96734F8B1C13AD94008CC403 /* MapSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96734F891C13AD94008CC403 /* MapSearchResultCell.xib */; };
 		96734F8E1C13AE9E008CC403 /* PlaceDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F8D1C13AE9E008CC403 /* PlaceDetailsViewController.m */; };
 		96FECC6D1C057B2A00D410FA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FECC6C1C057B2A00D410FA /* MapKit.framework */; };
-		96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */; };
-		AD0536671C06AA7A00C12D12 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0536661C06AA7A00C12D12 /* SearchViewController.m */; };
+		96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */; settings = {ASSET_TAGS = (); }; };
+		AD0536671C06AA7A00C12D12 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0536661C06AA7A00C12D12 /* SearchViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD663B551C153999003153DD /* MerchantDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD663B531C153999003153DD /* MerchantDetailsView.m */; settings = {ASSET_TAGS = (); }; };
+		AD663B561C153999003153DD /* MerchantDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD663B541C153999003153DD /* MerchantDetailsView.xib */; settings = {ASSET_TAGS = (); }; };
+
 		FE91E1CCEFE43636F5650391 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0F973324B421B4E11177CF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +59,9 @@
 		96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsHelper.m; sourceTree = "<group>"; };
 		AD0536651C06AA7A00C12D12 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		AD0536661C06AA7A00C12D12 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		AD663B521C153999003153DD /* MerchantDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantDetailsView.h; sourceTree = "<group>"; };
+		AD663B531C153999003153DD /* MerchantDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantDetailsView.m; sourceTree = "<group>"; };
+		AD663B541C153999003153DD /* MerchantDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MerchantDetailsView.xib; sourceTree = "<group>"; };
 		E34AE9FAEDE0BE6238CD355E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +139,9 @@
 				96734F871C13AD94008CC403 /* MapSearchResultCell.h */,
 				96734F881C13AD94008CC403 /* MapSearchResultCell.m */,
 				96734F891C13AD94008CC403 /* MapSearchResultCell.xib */,
+				AD663B521C153999003153DD /* MerchantDetailsView.h */,
+				AD663B531C153999003153DD /* MerchantDetailsView.m */,
+				AD663B541C153999003153DD /* MerchantDetailsView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -229,6 +238,7 @@
 				96734F7F1C122324008CC403 /* SearchResultCell.xib in Resources */,
 				96734F8B1C13AD94008CC403 /* MapSearchResultCell.xib in Resources */,
 				960ECF501BFEA20B00A50069 /* Main.storyboard in Resources */,
+				AD663B561C153999003153DD /* MerchantDetailsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +299,7 @@
 			files = (
 				96734F8A1C13AD94008CC403 /* MapSearchResultCell.m in Sources */,
 				96734F7E1C122324008CC403 /* SearchResultCell.m in Sources */,
+				AD663B551C153999003153DD /* MerchantDetailsView.m in Sources */,
 				960ECF4D1BFEA20B00A50069 /* MapViewController.m in Sources */,
 				96734F831C13A38F008CC403 /* SearchPlaceModel.m in Sources */,
 				96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */,

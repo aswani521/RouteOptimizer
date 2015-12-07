@@ -14,12 +14,15 @@
     self = [super init];
     if (self) {
         self.name = dictionary[@"name"];
+        // street address
         self.placeId = dictionary[@"place_id"];
         self.rating = [[dictionary objectForKey:@"rating"] floatValue];
         self.iconImageString = dictionary[@"icon"];
         self.photos = dictionary[@"photos"];
         self.types = dictionary[@"types"];
         self.openNowStatus = dictionary[@"opening_hours"];
+        
+        // phone number
         
         NSDictionary *geometry = dictionary[@"geometry"];
         if (geometry) {
