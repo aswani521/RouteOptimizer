@@ -1,20 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MapSearchResultCell" id="gTV-IL-0wX" customClass="MapSearchResultCell">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+                <subviews>
+                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="location_marker" translatesAutoresizingMaskIntoConstraints="NO" id="qha-yW-tsf">
+                        <rect key="frame" x="12" y="5" width="29" height="48"/>
+                    </imageView>
+                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="navigation_button" translatesAutoresizingMaskIntoConstraints="NO" id="YVn-C2-GEy">
+                        <rect key="frame" x="275" y="10" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="heQ-fP-xxZ"/>
+                            <constraint firstAttribute="width" constant="34" id="vj9-mY-ZfR"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Patxi's Pizza San Francisco, CA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NP-ur-bZr">
+                        <rect key="frame" x="59" y="8" width="202" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="202" id="cb7-Gf-BHA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Emerson Street, Palo Alto, CA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBL-kn-DKc">
+                        <rect key="frame" x="59" y="25" width="156" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="j1S-yp-PCA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
                 <animations/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <animations/>
+            <constraints>
+                <constraint firstItem="jBL-kn-DKc" firstAttribute="leading" secondItem="2NP-ur-bZr" secondAttribute="leading" id="0Dq-Eg-npd"/>
+                <constraint firstAttribute="trailing" secondItem="YVn-C2-GEy" secondAttribute="trailing" constant="11" id="0FJ-0B-CAm"/>
+                <constraint firstItem="2NP-ur-bZr" firstAttribute="leading" secondItem="qha-yW-tsf" secondAttribute="trailing" constant="18" id="0sB-FG-h1t"/>
+                <constraint firstItem="qha-yW-tsf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="15O-U9-gTC"/>
+                <constraint firstItem="YVn-C2-GEy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="1vV-p1-ldK"/>
+                <constraint firstItem="YVn-C2-GEy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="9Qh-VV-lvD"/>
+                <constraint firstItem="jBL-kn-DKc" firstAttribute="top" secondItem="2NP-ur-bZr" secondAttribute="bottom" id="U8g-TC-vr0"/>
+                <constraint firstItem="YVn-C2-GEy" firstAttribute="leading" secondItem="jBL-kn-DKc" secondAttribute="trailing" constant="60" id="cml-wA-3hf"/>
+                <constraint firstItem="2NP-ur-bZr" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="gUQ-My-zHv"/>
+                <constraint firstItem="YVn-C2-GEy" firstAttribute="leading" secondItem="2NP-ur-bZr" secondAttribute="trailing" constant="14" id="lWl-Kr-em4"/>
+                <constraint firstItem="qha-yW-tsf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="uG4-ZB-q5d"/>
+            </constraints>
+            <size key="customSize" width="362" height="84"/>
+            <point key="canvasLocation" x="419" y="214"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="location_marker" width="29" height="48"/>
+        <image name="navigation_button" width="34" height="34"/>
+    </resources>
 </document>
