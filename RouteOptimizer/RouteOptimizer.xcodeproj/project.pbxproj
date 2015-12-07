@@ -13,16 +13,16 @@
 		960ECF501BFEA20B00A50069 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF4E1BFEA20B00A50069 /* Main.storyboard */; };
 		960ECF521BFEA20B00A50069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF511BFEA20B00A50069 /* Assets.xcassets */; };
 		960ECF551BFEA20B00A50069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF531BFEA20B00A50069 /* LaunchScreen.storyboard */; };
-		96734F7E1C122324008CC403 /* SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F7C1C122324008CC403 /* SearchResultCell.m */; settings = {ASSET_TAGS = (); }; };
-		96734F7F1C122324008CC403 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96734F7D1C122324008CC403 /* SearchResultCell.xib */; settings = {ASSET_TAGS = (); }; };
-		96734F831C13A38F008CC403 /* SearchPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F821C13A38F008CC403 /* SearchPlaceModel.m */; settings = {ASSET_TAGS = (); }; };
-		96734F861C13ACD1008CC403 /* MapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F851C13ACD1008CC403 /* MapSearchViewController.m */; settings = {ASSET_TAGS = (); }; };
-		96734F8A1C13AD94008CC403 /* MapSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F881C13AD94008CC403 /* MapSearchResultCell.m */; settings = {ASSET_TAGS = (); }; };
-		96734F8B1C13AD94008CC403 /* MapSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96734F891C13AD94008CC403 /* MapSearchResultCell.xib */; settings = {ASSET_TAGS = (); }; };
-		96734F8E1C13AE9E008CC403 /* PlaceDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F8D1C13AE9E008CC403 /* PlaceDetailsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		96734F7E1C122324008CC403 /* SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F7C1C122324008CC403 /* SearchResultCell.m */; };
+		96734F7F1C122324008CC403 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96734F7D1C122324008CC403 /* SearchResultCell.xib */; };
+		96734F831C13A38F008CC403 /* SearchPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F821C13A38F008CC403 /* SearchPlaceModel.m */; };
+		96734F861C13ACD1008CC403 /* MapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F851C13ACD1008CC403 /* MapSearchViewController.m */; };
+		96734F8A1C13AD94008CC403 /* MapSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F881C13AD94008CC403 /* MapSearchResultCell.m */; };
+		96734F8B1C13AD94008CC403 /* MapSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96734F891C13AD94008CC403 /* MapSearchResultCell.xib */; };
+		96734F8E1C13AE9E008CC403 /* PlaceDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F8D1C13AE9E008CC403 /* PlaceDetailsViewController.m */; };
 		96FECC6D1C057B2A00D410FA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FECC6C1C057B2A00D410FA /* MapKit.framework */; };
-		96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */; settings = {ASSET_TAGS = (); }; };
-		AD0536671C06AA7A00C12D12 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0536661C06AA7A00C12D12 /* SearchViewController.m */; settings = {ASSET_TAGS = (); }; };
+		96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */; };
+		AD0536671C06AA7A00C12D12 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0536661C06AA7A00C12D12 /* SearchViewController.m */; };
 		FE91E1CCEFE43636F5650391 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0F973324B421B4E11177CF /* libPods.a */; };
 /* End PBXBuildFile section */
 
