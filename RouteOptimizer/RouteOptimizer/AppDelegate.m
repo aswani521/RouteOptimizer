@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MapViewController.h"
 @import GoogleMaps;
 
 @interface AppDelegate ()
@@ -26,6 +27,15 @@
     // TODO !!!!!!!!!!!!!!!!!!!!!!REMOVE ME!!!!!!!!!!!!!!!!!!!
     // TODO !!!!!!!!!!!!!!!!!!!!!!REMOVE ME!!!!!!!!!!!!!!!!!!!
     // TODO !!!!!!!!!!!!!!!!!!!!!!REMOVE ME!!!!!!!!!!!!!!!!!!!
+    
+    
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MapViewController *mapViewController = [storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
+    UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:mapViewController];
+    
+    self.window.rootViewController = nvc;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
