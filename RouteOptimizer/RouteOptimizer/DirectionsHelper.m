@@ -66,7 +66,7 @@ NSString *const kPlaceSearchBaseUrl = @"https://maps.googleapis.com/maps/api/pla
     NSString *placesSearchRequest = [NSString stringWithFormat:@"%@?query=%@&key=%@", kPlaceSearchBaseUrl, correctedText, kServKey];
     [manager GET:placesSearchRequest parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@", responseObject);
-        //completion(responseObject[@"results"], nil);
+        completion(responseObject[@"results"], nil);
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
