@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchPlaceModel.h"
 
 @interface MapSearchResultCell : UICollectionViewCell
+- (void)setupCellWithSearchPlaceData:(SearchPlaceModel *)searchPlace;
 
 @end

@@ -8,10 +8,17 @@
 
 #import "MapSearchResultCell.h"
 
+@interface MapSearchResultCell ()
+
+@end
+
 @implementation MapSearchResultCell
 
 - (void)awakeFromNib {
     // Initialization code
+}
+
+- (void)setupCellWithSearchPlaceData:(SearchPlaceModel *)searchPlace {
 }
 
 @end

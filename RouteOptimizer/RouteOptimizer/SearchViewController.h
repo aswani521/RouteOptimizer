@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchPlaceModel.h"
 @import GoogleMaps;
 
 typedef NS_ENUM(NSInteger, SearchType) {
@@ -17,7 +18,9 @@ typedef NS_ENUM(NSInteger, SearchType) {
 
 @protocol SearchViewControllerDelegate
 - (void)completedSearchForPlace:(GMSPlace *)place withType:(enum SearchType) searchType;
+- (void)completedFullSearchWithResults:(NSArray *)searchPlaces;
 - (void)autoCompleteSizeDidChange:(float)autocomleteHeight;
+- (void)detailsTouchedForPlaceIdentifier:(NSString *)placeIdentifier;
 
 @end
 

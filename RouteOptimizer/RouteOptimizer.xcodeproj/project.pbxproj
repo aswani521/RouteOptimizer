@@ -19,15 +19,12 @@
 		96734F861C13ACD1008CC403 /* MapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F851C13ACD1008CC403 /* MapSearchViewController.m */; };
 		96734F8A1C13AD94008CC403 /* MapSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F881C13AD94008CC403 /* MapSearchResultCell.m */; };
 		96734F8B1C13AD94008CC403 /* MapSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96734F891C13AD94008CC403 /* MapSearchResultCell.xib */; };
-		96734F8E1C13AE9E008CC403 /* PlaceDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F8D1C13AE9E008CC403 /* PlaceDetailsViewController.m */; };
 		96FECC6D1C057B2A00D410FA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FECC6C1C057B2A00D410FA /* MapKit.framework */; };
 		96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */; settings = {ASSET_TAGS = (); }; };
 		A0D41FE38FE653BB4BFB0858 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394751ADFB3FE99E23722F45 /* Pods.framework */; };
 		AD0536671C06AA7A00C12D12 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0536661C06AA7A00C12D12 /* SearchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD663B551C153999003153DD /* MerchantDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD663B531C153999003153DD /* MerchantDetailsView.m */; settings = {ASSET_TAGS = (); }; };
 		AD663B561C153999003153DD /* MerchantDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD663B541C153999003153DD /* MerchantDetailsView.xib */; settings = {ASSET_TAGS = (); }; };
-
-		FE91E1CCEFE43636F5650391 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A0F973324B421B4E11177CF /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,8 +50,6 @@
 		96734F871C13AD94008CC403 /* MapSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSearchResultCell.h; sourceTree = "<group>"; };
 		96734F881C13AD94008CC403 /* MapSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSearchResultCell.m; sourceTree = "<group>"; };
 		96734F891C13AD94008CC403 /* MapSearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapSearchResultCell.xib; sourceTree = "<group>"; };
-		96734F8C1C13AE9E008CC403 /* PlaceDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailsViewController.h; sourceTree = "<group>"; };
-		96734F8D1C13AE9E008CC403 /* PlaceDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailsViewController.m; sourceTree = "<group>"; };
 		96FECC6C1C057B2A00D410FA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		96FECC6E1C062A7D00D410FA /* DirectionsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsHelper.h; sourceTree = "<group>"; };
 		96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsHelper.m; sourceTree = "<group>"; };
@@ -117,8 +112,6 @@
 				96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */,
 				96734F841C13ACD1008CC403 /* MapSearchViewController.h */,
 				96734F851C13ACD1008CC403 /* MapSearchViewController.m */,
-				96734F8C1C13AE9E008CC403 /* PlaceDetailsViewController.h */,
-				96734F8D1C13AE9E008CC403 /* PlaceDetailsViewController.m */,
 			);
 			path = RouteOptimizer;
 			sourceTree = "<group>";
@@ -304,7 +297,6 @@
 				960ECF4D1BFEA20B00A50069 /* MapViewController.m in Sources */,
 				96734F831C13A38F008CC403 /* SearchPlaceModel.m in Sources */,
 				96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */,
-				96734F8E1C13AE9E008CC403 /* PlaceDetailsViewController.m in Sources */,
 				AD0536671C06AA7A00C12D12 /* SearchViewController.m in Sources */,
 				960ECF4A1BFEA20B00A50069 /* AppDelegate.m in Sources */,
 				960ECF471BFEA20B00A50069 /* main.m in Sources */,

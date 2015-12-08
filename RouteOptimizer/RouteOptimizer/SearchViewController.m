@@ -9,11 +9,12 @@
 #import "SearchViewController.h"
 #import "MapViewController.h"
 #import "SearchResultCell.h"
+#import "SearchPlaceModel.h"
 #import "DirectionsHelper.h"
 #import "MapSearchViewController.h"
 @import GoogleMaps;
 
-@interface SearchViewController () <GMSAutocompleteFetcherDelegate, UIGestureRecognizerDelegate>
+@interface SearchViewController () <SearchResultCellDelegate, GMSAutocompleteFetcherDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *startAddress;
 @property (strong, nonatomic) IBOutlet UITextField *endAddress;
 @property (strong, nonatomic) IBOutlet UITextField *searchTerm;
@@ -110,6 +111,7 @@
     // The first cell should always be to search for the current term
     // Otherwise set the map with the place the user selected
     if (cell) {
+        cell.delegate = self;
         if (indexPath.row == 0) {
             switch (self.selectedSearchType) {
                 case SearchTypeOrigin:
@@ -133,7 +135,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.delegate autoCompleteSizeDidChange:collectionView.contentSize.height];
     //return collectionView.contentSize;
-    return CGSizeMake(self.searchResultCollectionView.frame.size.width, 50);
+    return CGSizeMake(self.searchResultCollectionView.frame.size.width, 54);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath 
@@ -202,6 +204,13 @@
 }
 
 - (void)placeSearchWithText:(NSString *)text {
+    [DirectionsHelper placeSearchWithText:text onComplete:^(NSArray *places, NSError *error) {
+        NSMutableArray *searchPlaces = [NSMutableArray array];
+        for (NSDictionary *place in places) {
+            [searchPlaces addObject:[[SearchPlaceModel alloc] initWithDictionary:place]];
+        }
+        [self.delegate completedFullSearchWithResults:searchPlaces];
+    }];
     //UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     //MapSearchViewController *mapSearchVc = [storyboard instantiateViewControllerWithIdentifier:@"MapSearchViewController"];
     //[mapSearchVc setSearchTerm:text]; // This initiates the remote calls necessary to retrieve the relevant place data
@@ -250,6 +259,12 @@
     }
     
     return YES;
+}
+
+#pragma mark SearchResultCellDelegate methods
+
+- (void)detailsWasTouchedForPlace:(NSString *)placeIdentifier {
+    [self.delegate detailsTouchedForPlaceIdentifier:placeIdentifier];
 }
 
 // Handles de-selection when user clicks on whitespace

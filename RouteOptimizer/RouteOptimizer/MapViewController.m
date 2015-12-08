@@ -8,8 +8,10 @@
 
 #import "MapViewController.h"
 #import "SearchViewController.h"
+#import "SearchResultCell.h"
 #import "DirectionsHelper.h"
 #import "MapSearchResultCell.h"
+#import "MerchantDetailsView.h"
 
 @interface MapViewController () <UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate, SearchViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIView *searchContainerView;
@@ -40,9 +42,9 @@
     
     self.secondaryPlaces = [NSMutableArray array];
     
-    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"directionsIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(directionsBtnClicked:)];
-    self.navigationItem.rightBarButtonItem = searchButton;
-    self.navigationItem.title = @"RouteOptimizer";
+    //UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"directionsIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(directionsBtnClicked:)];
+    //self.navigationItem.rightBarButtonItem = searchButton;
+    //self.navigationItem.title = @"RouteOptimizer";
     
     // TODO update to only init/perform/ask when user requests to use location
     // TODO update to only init/perform/ask when user requests to use location
@@ -83,6 +85,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self updateMapRoute];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -149,6 +158,11 @@
     self.autoCompleteHeightConstraint.constant = autocomleteHeight;
 }
 
+- (void)completedFullSearchWithResults:(NSArray *)searchPlaces {
+    self.searchResults = [[NSMutableArray alloc] initWithArray:searchPlaces];
+    [self.searchCollectionView reloadData];
+}
+
 - (void)completedSearchForPlace:(GMSPlace *)place withType:(enum SearchType) searchType {
     switch (searchType) {
         case SearchTypeOrigin:
@@ -192,6 +206,19 @@
     }
 }
 
+- (void)detailsTouchedForPlaceIdentifier:(NSString *)placeIdentifier {
+    
+    [DirectionsHelper placeSearchWithText:placeIdentifier onComplete:^(NSArray *places, NSError *error) {
+        SearchPlaceModel *searchPlace = [[SearchPlaceModel alloc] initWithDictionary:[places firstObject]];
+        MerchantDetailsView *mdvc = [[MerchantDetailsView alloc] initWithNibName:@"MerchantDetailsView" bundle:nil];
+        
+        //Setup with searchPlace here
+        //[mdvc setupWithSearchPlace:searchPlace];
+        
+        [self.navigationController pushViewController:mdvc animated:YES];
+    }];
+}
+
 # pragma mark - UICollectionViewDataSource delegate methods
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -206,7 +233,7 @@
     MapSearchResultCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MapSearchResultCell" forIndexPath:indexPath];
     
     if (cell) {
-        //[cell setupCellWithPlaceData:];
+        [cell setupCellWithSearchPlaceData:self.searchResults[indexPath.row]];
     }
     
     return cell;

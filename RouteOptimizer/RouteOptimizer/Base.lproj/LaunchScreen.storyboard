@@ -34,44 +34,6 @@
             </objects>
             <point key="canvasLocation" x="44.266666666666666" y="348.37333333333333"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="0YP-tu-eSS">
-            <objects>
-                <viewController id="x4N-ZA-YpS" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WgQ-yq-XeK"/>
-                        <viewControllerLayoutGuide type="bottom" id="9fr-fr-8Yy"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="NsI-DE-AAp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XZd-G6-P7h" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="162.66666666666666" y="129.22"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="INU-Tw-rKh">
-            <objects>
-                <viewController id="xn8-3H-JLI" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BPt-qS-EOJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="Sl1-ur-rbE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="PpU-g5-YdU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GQO-p1-haF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="506.66666666666669" y="129.22"/>
-        </scene>
     </scenes>
     <resources>
         <image name="01_stophop_launch_screen" width="750" height="1334"/>
