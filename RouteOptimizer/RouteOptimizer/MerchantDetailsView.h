@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchPlaceModel.h"
 
 @interface MerchantDetailsView : UIViewController
-
+@property (nonatomic, strong) SearchPlaceModel *MerchantPlace;
 @end

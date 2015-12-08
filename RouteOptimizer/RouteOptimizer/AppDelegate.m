@@ -36,7 +36,9 @@
     
     self.window.rootViewController = nvc;
     [self.window makeKeyAndVisible];
-    
+
+    //sleep(5); // show spashscreen for longer time
+
     return YES;
 }
 

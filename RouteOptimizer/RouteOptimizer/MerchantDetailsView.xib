@@ -6,6 +6,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MerchantDetailsView">
             <connections>
+                <outlet property="MerchantAddressLine1" destination="tjw-j9-fgk" id="I5z-WT-awv"/>
+                <outlet property="MerchantAddressLine2" destination="h7U-8x-HpD" id="Qch-0X-KJB"/>
+                <outlet property="MerchantBusinessImg1" destination="fGt-0w-7in" id="DYA-Mt-IVg"/>
+                <outlet property="MerchantBusinessImg2" destination="rLb-Ut-C6H" id="LXR-Z4-I2z"/>
+                <outlet property="MerchantBusinessOpenHoursMessage" destination="NTw-HO-BTF" id="gTC-o8-XMK"/>
+                <outlet property="MerchantMapView" destination="6ad-IR-5YT" id="VXR-7T-pMj"/>
+                <outlet property="MerchantPhoneNumber" destination="DrB-xn-bNc" id="v1Z-Ci-F6c"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
