@@ -11,4 +11,5 @@
 
 @interface MerchantDetailsView : UIViewController
 @property (nonatomic, strong) SearchPlaceModel *MerchantPlace;
+- (void) setPlaces:(SearchPlaceModel *)MerchantPlace;
 @end

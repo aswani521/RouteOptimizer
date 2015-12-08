@@ -26,6 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self setPlaces:self.MerchantPlace];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,7 +37,9 @@
 
 - (void) setPlaces:(SearchPlaceModel *)MerchantPlace{
     _MerchantPlace = MerchantPlace;
-    self.MerchantAddressLine1.text = self.MerchantPlace.name;
+    self.MerchantAddressLine1.text = @"Hyderabad";
+    
+    //self.MerchantAddressLine1.text = self.MerchantPlace.name;
     // Fix me
 //    self.MerchantAddressLine2.text = self.MerchantPlace.formattedAddress;
 //    self.MerchantMapView = self.place; // add the right one here

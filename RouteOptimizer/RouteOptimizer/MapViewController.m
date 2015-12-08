@@ -210,11 +210,12 @@
     
     [DirectionsHelper placeSearchWithText:placeIdentifier onComplete:^(NSArray *places, NSError *error) {
         SearchPlaceModel *searchPlace = [[SearchPlaceModel alloc] initWithDictionary:[places firstObject]];
-        MerchantDetailsView *mdvc = [[MerchantDetailsView alloc] initWithNibName:@"MerchantDetailsView" bundle:nil];
-        
+        //MerchantDetailsView *mdvc = [[MerchantDetailsView alloc] initWithNibName:@"MerchantDetailsView" bundle:nil];
+        MerchantDetailsView *mdvc = [[MerchantDetailsView alloc]init];
         //Setup with searchPlace here
         //[mdvc setupWithSearchPlace:searchPlace];
-        
+
+        mdvc.MerchantPlace = searchPlace;
         [self.navigationController pushViewController:mdvc animated:YES];
     }];
 }
