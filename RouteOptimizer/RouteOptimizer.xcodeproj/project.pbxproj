@@ -22,6 +22,7 @@
 		96734F8E1C13AE9E008CC403 /* PlaceDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F8D1C13AE9E008CC403 /* PlaceDetailsViewController.m */; };
 		96FECC6D1C057B2A00D410FA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FECC6C1C057B2A00D410FA /* MapKit.framework */; };
 		96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */; settings = {ASSET_TAGS = (); }; };
+		A0D41FE38FE653BB4BFB0858 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394751ADFB3FE99E23722F45 /* Pods.framework */; };
 		AD0536671C06AA7A00C12D12 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0536661C06AA7A00C12D12 /* SearchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD663B551C153999003153DD /* MerchantDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD663B531C153999003153DD /* MerchantDetailsView.m */; settings = {ASSET_TAGS = (); }; };
 		AD663B561C153999003153DD /* MerchantDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD663B541C153999003153DD /* MerchantDetailsView.xib */; settings = {ASSET_TAGS = (); }; };
@@ -30,8 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A0F973324B421B4E11177CF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		334D8E9AC9675998B5682CF1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		394751ADFB3FE99E23722F45 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		960ECF421BFEA20B00A50069 /* RouteOptimizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteOptimizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		960ECF461BFEA20B00A50069 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		960ECF481BFEA20B00A50069 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,7 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96FECC6D1C057B2A00D410FA /* MapKit.framework in Frameworks */,
-				FE91E1CCEFE43636F5650391 /* libPods.a in Frameworks */,
+				A0D41FE38FE653BB4BFB0858 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				96FECC6C1C057B2A00D410FA /* MapKit.framework */,
-				0A0F973324B421B4E11177CF /* libPods.a */,
+				394751ADFB3FE99E23722F45 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

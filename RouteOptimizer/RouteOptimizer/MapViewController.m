@@ -9,8 +9,16 @@
 #import "MapViewController.h"
 #import "SearchViewController.h"
 #import "DirectionsHelper.h"
+#import "MapSearchResultCell.h"
 
-@interface MapViewController () <CLLocationManagerDelegate, SearchViewControllerDelegate>
+@interface MapViewController () <UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate, SearchViewControllerDelegate>
+@property (strong, nonatomic) IBOutlet UIView *searchContainerView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *containerViewHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *autoCompleteHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *searchCollectionHeightConstraint;
+@property (strong, nonatomic) IBOutlet UICollectionView *autocompleteCollectionView;
+@property (strong, nonatomic) IBOutlet UICollectionView *searchCollectionView;
+@property (strong, nonatomic) IBOutlet GMSMapView *baseMapView;
 @property (nonatomic, strong) GMSPlacePicker *placePicker;
 @property (nonatomic, strong) GMSMapView *mapView;
 @property (nonatomic, strong) GMSPolyline *mapLine;
@@ -18,6 +26,7 @@
 @property (nonatomic, strong) GMSMarker *endMarker;
 @property (nonatomic, strong) GMSMarker *currentSecondaryMarker;
 @property (nonatomic, strong) NSMutableArray *secondaryMarkers;
+@property (nonatomic, strong) NSMutableArray *searchResults;
 @property (nonatomic, assign) BOOL initialLocationSet;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
@@ -59,13 +68,31 @@
     self.endMarker = [[GMSMarker alloc] init];
     self.secondaryMarkers = [NSMutableArray array];
 
-    self.view = self.mapView;
+    [self.baseMapView insertSubview:self.mapView atIndex:0];
+    [self.baseMapView addSubview:self.autocompleteCollectionView];
+    self.autoCompleteHeightConstraint.constant = 0;
+    
+    [self.baseMapView addSubview:self.searchCollectionView];
+    self.searchCollectionView.dataSource = self;
+    self.searchCollectionView.delegate = self;
+    //self.searchCollectionHeightConstraint.constant = 0;
+    [self.searchCollectionView registerNib:[UINib nibWithNibName:@"MapSearchResultCell" bundle:nil] forCellWithReuseIdentifier:@"MapSearchResultCell"];
 
     [self updateMapRoute];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self updateMapRoute];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"SearchViewControllerSegue"]) {
+        SearchViewController *svc = (SearchViewController *)(segue.destinationViewController);
+        svc.delegate = self;
+        svc.searchResultCollectionView = self.autocompleteCollectionView;
+        //self.autocompleteCollectionView.delegate = svc;
+        //self.autocompleteCollectionView.dataSource = svc;
+    }
 }
 
 - (void)updateMapRoute {
@@ -115,6 +142,12 @@
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
+#pragma mark - SearchViewController delegate methods
+
+- (void)autoCompleteSizeDidChange:(float)autocomleteHeight {
+    // Maybe constrain this between 0 and 200
+    self.autoCompleteHeightConstraint.constant = autocomleteHeight;
+}
 
 - (void)completedSearchForPlace:(GMSPlace *)place withType:(enum SearchType) searchType {
     switch (searchType) {
@@ -157,6 +190,49 @@
             [self.secondaryPlaces addObject:place];
             break;
     }
+}
+
+# pragma mark - UICollectionViewDataSource delegate methods
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.searchResults.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    MapSearchResultCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MapSearchResultCell" forIndexPath:indexPath];
+    
+    if (cell) {
+        //[cell setupCellWithPlaceData:];
+    }
+    
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(self.searchCollectionView.frame.size.width, 50); // Will not be size 50
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    // TODO: Deselect item (Not needed just yet)
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    // The motions happen so fast that this is not relly showing. Maybe it'll show if we animate
+    MapSearchResultCell *cell = (MapSearchResultCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell setHighlighted:YES];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    // The motions happen so fast that this is not relly showing. Maybe it'll show if we animate
+    MapSearchResultCell *cell = (MapSearchResultCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell setHighlighted:NO];
 }
 
 @end

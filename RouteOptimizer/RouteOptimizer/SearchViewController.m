@@ -13,15 +13,14 @@
 #import "MapSearchViewController.h"
 @import GoogleMaps;
 
-@interface SearchViewController () <UICollectionViewDataSource, UICollectionViewDelegate, GMSAutocompleteFetcherDelegate, UIGestureRecognizerDelegate>
+@interface SearchViewController () <GMSAutocompleteFetcherDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *startAddress;
 @property (strong, nonatomic) IBOutlet UITextField *endAddress;
 @property (strong, nonatomic) IBOutlet UITextField *searchTerm;
 //TODO: THIS NEEDS TO ANIMATE (MAYBE USE ADLivelyCollectionView)
 //TODO: ANIMATE this on screen on textField touch, and animate the textField up with it!!!!
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapToDismissGestureRecognizer;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *autoCompleteHeight;
-@property (strong, nonatomic) IBOutlet UICollectionView *searchResultCollectionView;
+//@property (strong, nonatomic) IBOutlet NSLayoutConstraint *autoCompleteHeight;
 
 @property (nonatomic, assign) SearchType selectedSearchType;
 @property (nonatomic, strong) GMSAutocompleteFetcher *placesFetcher;
@@ -84,7 +83,8 @@
 }
 
 - (IBAction)searchEditingDidEnd:(UITextField *)sender {
-    self.autoCompleteHeight.constant = 0;
+    //self.autoCompleteHeight.constant = 0;
+    [self.delegate autoCompleteSizeDidChange:0];
     [self.view layoutIfNeeded];
 }
 
@@ -95,6 +95,8 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    [collectionView.collectionViewLayout invalidateLayout];
+    
     if (self.currentSearchResults.count > 0) {
         return self.currentSearchResults.count + 1;
     }
@@ -129,10 +131,10 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.delegate autoCompleteSizeDidChange:collectionView.contentSize.height];
+    //return collectionView.contentSize;
     return CGSizeMake(self.searchResultCollectionView.frame.size.width, 50);
 }
-
-#pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath 
 {
@@ -180,7 +182,7 @@
         }
     }
     
-    self.autoCompleteHeight.constant = 0;
+    [self.delegate autoCompleteSizeDidChange:0];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -200,15 +202,19 @@
 }
 
 - (void)placeSearchWithText:(NSString *)text {
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MapSearchViewController *mapSearchVc = [storyboard instantiateViewControllerWithIdentifier:@"MapSearchViewController"];
-    [mapSearchVc setSearchTerm:text]; // This initiates the remote calls necessary to retrieve the relevant place data
+    //UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //MapSearchViewController *mapSearchVc = [storyboard instantiateViewControllerWithIdentifier:@"MapSearchViewController"];
+    //[mapSearchVc setSearchTerm:text]; // This initiates the remote calls necessary to retrieve the relevant place data
     //mapSearchVc.delegate = self;
     
-    [self.navigationController pushViewController:mapSearchVc animated:YES];
+    //[self.navigationController pushViewController:mapSearchVc animated:YES];
 }
 
 - (IBAction)searchTextDidChange:(UITextField *)sender {
+    if (sender.text.length == 0) {
+        [self.delegate autoCompleteSizeDidChange:0];
+    }
+    
     [self.placesFetcher sourceTextHasChanged:sender.text];
 }
 
@@ -217,6 +223,7 @@
 - (void)didAutocompleteWithPredictions:(NSArray *)predictions {
     self.currentSearchResults = [[NSMutableArray alloc] initWithArray:predictions];
     [self.searchResultCollectionView reloadData];
+    [self.searchResultCollectionView.collectionViewLayout invalidateLayout];
     for (GMSAutocompletePrediction *prediction in predictions) {
         NSLog(@"%@", prediction);
     }
@@ -251,14 +258,14 @@
     [self.startAddress resignFirstResponder];
     [self.endAddress resignFirstResponder];
     [self.searchTerm resignFirstResponder];
-    self.autoCompleteHeight.constant = 0;
+    //self.autoCompleteHeight.constant = 0;
     [self.view layoutIfNeeded];
 }
 
 // Presents the autocomplete collection view
 // We should animate this
 - (void)setupForAutoCompleteWithText:(NSString *)initialText {
-    self.autoCompleteHeight.constant = 300;
+    //self.autoCompleteHeight.constant = 300;
     if (initialText.length > 0) {
         [self.placesFetcher sourceTextHasChanged:initialText];
     } else {

@@ -16,13 +16,14 @@ typedef NS_ENUM(NSInteger, SearchType) {
 };
 
 @protocol SearchViewControllerDelegate
-
 - (void)completedSearchForPlace:(GMSPlace *)place withType:(enum SearchType) searchType;
+- (void)autoCompleteSizeDidChange:(float)autocomleteHeight;
 
 @end
 
-@interface SearchViewController : UIViewController
+@interface SearchViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) id <SearchViewControllerDelegate> delegate;
+@property (strong, nonatomic) UICollectionView *searchResultCollectionView;
 
 - (void)setInitialRouteStart:(NSString *)start end:(NSString *)end andSecondaries:(NSArray *)secondaries;
 @end
