@@ -35,12 +35,12 @@
         }
         
         //Make a remote call to fetch the place if we need it
-        //GMSPlacesClient *placesClient = [[GMSPlacesClient alloc] init];
-        //[placesClient lookUpPlaceID:self.placeId callback:^(GMSPlace * _Nullable result, NSError * _Nullable error) {
-        //    if (result) {
-        //        self.place = result;
-        //    }
-        //}];
+        GMSPlacesClient *placesClient = [[GMSPlacesClient alloc] init];
+        [placesClient lookUpPlaceID:self.placeId callback:^(GMSPlace * _Nullable result, NSError * _Nullable error) {
+            if (result) {
+                self.place = result;
+            }
+        }];
     }
     return self;
 }

@@ -11,6 +11,11 @@
 @interface SearchResultCell ()
 @property (strong, nonatomic) IBOutlet UILabel *placeNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *placeNameSecondaryLabel;
+@property (strong, nonatomic) IBOutlet UILabel *tripDurationAdditionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *distanceAdditionLabel;
+
+@property (strong, nonatomic) SearchPlaceModel *searchPlaceModel;
+@property (strong, nonatomic) GMSAutocompletePrediction *autocompletePrediction;
 
 @end
 
@@ -21,6 +26,7 @@
 }
 
 - (void)setupWithPlaceData:(GMSAutocompletePrediction *)placeData {
+    self.autocompletePrediction = placeData;
     //UIFont *regularFont = self.placeNameLabel.font;
     UIFont *regularFont = [UIFont systemFontOfSize:self.placeNameLabel.font.pointSize];
     //UIFont *boldFont = [UIFont fontWithDescriptor:[[regularFont fontDescriptor] fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold] size:regularFont.pointSize];
@@ -41,6 +47,14 @@
 
 - (void)setupWithSearchData:(NSString *)searchTerm {
     self.placeNameLabel.text = searchTerm;
+}
+
+- (void)setupWithSearchPlaceData:(SearchPlaceModel *)placeData {
+    self.searchPlaceModel = placeData;
+}
+
+- (IBAction)touchUpOnMerchantShow:(UIButton *)sender {
+    [self.delegate detailsWasTouchedForPlace:[self.autocompletePrediction.attributedFullText string]];
 }
 
 @end
