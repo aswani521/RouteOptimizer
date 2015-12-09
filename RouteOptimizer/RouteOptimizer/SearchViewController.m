@@ -14,19 +14,25 @@
 #import "MapSearchViewController.h"
 @import GoogleMaps;
 
+float const kDestinationToStopsHeight = 8;
+float const kStopsContainerHeight = 46;
+
 @interface SearchViewController () <SearchResultCellDelegate, GMSAutocompleteFetcherDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *startAddress;
 @property (strong, nonatomic) IBOutlet UITextField *endAddress;
 @property (strong, nonatomic) IBOutlet UITextField *searchTerm;
 //TODO: THIS NEEDS TO ANIMATE (MAYBE USE ADLivelyCollectionView)
 //TODO: ANIMATE this on screen on textField touch, and animate the textField up with it!!!!
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *stopsContainerViewHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *destinationToStopsHeightConstraint;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapToDismissGestureRecognizer;
 //@property (strong, nonatomic) IBOutlet NSLayoutConstraint *autoCompleteHeight;
 
 @property (nonatomic, assign) SearchType selectedSearchType;
 @property (nonatomic, strong) GMSAutocompleteFetcher *placesFetcher;
+@property (nonatomic, strong) DirectionsModel *currentDirectionsModel;
+@property (nonatomic, strong) NSMutableDictionary *directionsModelsForCurrentSearchResults;
 @property (nonatomic, strong) NSMutableArray *currentSearchResults;
-
 @property (nonatomic, strong) NSString *initialStartText;
 @property (nonatomic, strong) NSString *initialEndText;
 @property (nonatomic, strong) NSString *initialSecondaryText;
@@ -47,7 +53,11 @@
     
     GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
     filter.type = kGMSPlacesAutocompleteTypeFilterNoFilter;
-    self.placesFetcher = [[GMSAutocompleteFetcher alloc] initWithBounds:nil filter:filter];
+    CLLocationCoordinate2D neBoundsCorner = CLLocationCoordinate2DMake(50.736455, -48.515625);
+    CLLocationCoordinate2D swBoundsCorner = CLLocationCoordinate2DMake(19.642588, -126.914063);
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:neBoundsCorner
+                                                                       coordinate:swBoundsCorner];
+    self.placesFetcher = [[GMSAutocompleteFetcher alloc] initWithBounds:bounds filter:filter];
     self.placesFetcher.delegate = self;
     
     self.tapToDismissGestureRecognizer.delegate = self;
@@ -56,12 +66,21 @@
     self.startAddress.text = self.initialStartText;
     self.endAddress.text = self.initialEndText;
     self.searchTerm.text = self.initialSecondaryText;
+    
+    self.directionsModelsForCurrentSearchResults = [NSMutableDictionary dictionary];
+    
+    self.stopsContainerViewHeightConstraint.constant = 0;
+    self.destinationToStopsHeightConstraint.constant = 8;
 }
 
 - (void)setInitialRouteStart:(NSString *)start end:(NSString *)end andSecondaries:(NSArray *)secondaries {
     self.initialStartText = start;
     self.initialEndText = end;
     self.initialSecondaryText = [secondaries firstObject];
+}
+
+- (void)setCurrentDirectionsModel:(DirectionsModel *)directionsModel {
+    _currentDirectionsModel = directionsModel;
 }
 
 - (IBAction)findRouteButtonClicked:(id)sender {
@@ -125,7 +144,9 @@
                     break;
             }
         } else {
-            [cell setupWithPlaceData:self.currentSearchResults[indexPath.row - 1]];
+            GMSAutocompletePrediction *prediction = self.currentSearchResults[indexPath.row-1];
+            [cell setupWithPlaceData:prediction existingDirections:self.currentDirectionsModel andNewDirections:self.directionsModelsForCurrentSearchResults[prediction.placeID]];
+            //[cell setupWithPlaceData:self.currentSearchResults[indexPath.row - 1]];
         }
     }
     
@@ -232,6 +253,20 @@
 - (void)didAutocompleteWithPredictions:(NSArray *)predictions {
     self.currentSearchResults = [[NSMutableArray alloc] initWithArray:predictions];
     [self.searchResultCollectionView reloadData];
+    self.directionsModelsForCurrentSearchResults = [NSMutableDictionary dictionary];
+    
+    if (self.selectedSearchType == SearchTypeSecondary && self.currentDirectionsModel) {
+        // Use directions helper to get all distance offsets
+        for (GMSAutocompletePrediction *prediction in predictions) {
+            [DirectionsHelper plotDirectionsGivenStart:self.currentDirectionsModel.startAddress destination:self.currentDirectionsModel.endAddress andSecondaryDestinations:@[prediction.attributedFullText.string] onComplete:^(DirectionsModel *directions, NSError *error) {
+                if (directions) {
+                    self.directionsModelsForCurrentSearchResults[prediction.placeID] = directions;
+                    [self.searchResultCollectionView reloadData];
+                }
+            }];
+        }
+    }
+    
     [self.searchResultCollectionView.collectionViewLayout invalidateLayout];
     for (GMSAutocompletePrediction *prediction in predictions) {
         NSLog(@"%@", prediction);

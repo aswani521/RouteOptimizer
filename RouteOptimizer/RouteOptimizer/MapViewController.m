@@ -12,6 +12,10 @@
 #import "DirectionsHelper.h"
 #import "MapSearchResultCell.h"
 #import "MerchantDetailsView.h"
+#import "DirectionsModel.h"
+
+float const kSearchHeightWithStops = 158;
+float const kSearchHeightWithoutStops = 120;
 
 @interface MapViewController () <UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate, SearchViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIView *searchContainerView;
@@ -21,8 +25,9 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *autocompleteCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionView *searchCollectionView;
 @property (strong, nonatomic) IBOutlet GMSMapView *baseMapView;
-@property (nonatomic, strong) GMSPlacePicker *placePicker;
-@property (nonatomic, strong) GMSMapView *mapView;
+
+@property (nonatomic, strong) SearchViewController *searchViewController;
+@property (nonatomic, strong) DirectionsModel *currentDirectionsModel;
 @property (nonatomic, strong) GMSPolyline *mapLine;
 @property (nonatomic, strong) GMSMarker *startMarker;
 @property (nonatomic, strong) GMSMarker *endMarker;
@@ -58,26 +63,29 @@
     // TODO update to only init/perform/ask when user requests to use location
 
     // TODO come back to the initial setup of the camera for this view. If we have the location use it!
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:37.352011
-                                                            longitude:-121.882324
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:37.424912
+                                                            longitude:-122.136598
                                                                  zoom:10];
-    self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    self.mapView.myLocationEnabled = YES;
-    [self.mapView animateToLocation:self.mapView.myLocation.coordinate];
+    //self.baseMapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    self.baseMapView.camera = camera;
+    self.baseMapView.myLocationEnabled = YES;
+    //[self.baseMapView animateToLocation:self.baseMapView.myLocation.coordinate];
     self.mapLine = [[GMSPolyline alloc] init];
 
     self.startMarker = [[GMSMarker alloc] init];
     self.endMarker = [[GMSMarker alloc] init];
     self.secondaryMarkers = [NSMutableArray array];
 
-    [self.baseMapView insertSubview:self.mapView atIndex:0];
+    //[self.baseMapView insertSubview:self.baseMapView atIndex:0];
+    //[self.baseMapView insertSubview:self.autocompleteCollectionView atIndex:0];
     [self.baseMapView addSubview:self.autocompleteCollectionView];
-    self.autoCompleteHeightConstraint.constant = 0;
+    //self.autoCompleteHeightConstraint.constant = kSearchHeightWithoutStops;
     
     [self.baseMapView addSubview:self.searchCollectionView];
     self.searchCollectionView.dataSource = self;
     self.searchCollectionView.delegate = self;
-    //self.searchCollectionHeightConstraint.constant = 0;
+    self.searchCollectionHeightConstraint.constant = 0;
+    //self.containerViewHeightConstraint.constant = kSearchHeightWithoutStops;
     [self.searchCollectionView registerNib:[UINib nibWithNibName:@"MapSearchResultCell" bundle:nil] forCellWithReuseIdentifier:@"MapSearchResultCell"];
 
     [self updateMapRoute];
@@ -96,9 +104,9 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"SearchViewControllerSegue"]) {
-        SearchViewController *svc = (SearchViewController *)(segue.destinationViewController);
-        svc.delegate = self;
-        svc.searchResultCollectionView = self.autocompleteCollectionView;
+        self.searchViewController = (SearchViewController *)(segue.destinationViewController);
+        self.searchViewController.delegate = self;
+        self.searchViewController.searchResultCollectionView = self.autocompleteCollectionView;
         //self.autocompleteCollectionView.delegate = svc;
         //self.autocompleteCollectionView.dataSource = svc;
     }
@@ -116,20 +124,34 @@
     [DirectionsHelper plotDirectionsGivenStart:self.startPlace.name//[NSString stringWithFormat:@"place_id:%@", self.startPlace.placeID]
                                    destination:self.destinationPlace.name//[NSString stringWithFormat:@"place_id:%@", self.destinationPlace.placeID]
                                 andSecondaryDestinations:secondaries
-                                    onComplete:^(GMSPolyline *line, NSError *error) {
+                                    onComplete:^(DirectionsModel *directionsModel, NSError *error) {
+                                        self.currentDirectionsModel = directionsModel;
                                         self.mapLine.map = nil;
-                                        self.mapLine = line;
-                                        self.mapLine.map = self.mapView;
+                                        self.mapLine = self.currentDirectionsModel.mapLine;
+                                        self.mapLine.map = self.baseMapView;
+                                        
+                                        if (self.currentDirectionsModel) {
+                                            //if (self.containerViewHeightConstraint.constant != kSearchHeightWithStops) {
+                                            //    [UIView animateWithDuration:1.0 animations:^{
+                                            //        self.containerViewHeightConstraint.constant = kSearchHeightWithStops;
+                                            //    }];
+                                            //}
+                                            
+                                            GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:self.currentDirectionsModel.southwestBound coordinate:self.currentDirectionsModel.northeastBound];
+                                            GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:40.0f];
+                                            [self.baseMapView moveCamera:update];
+                                            //[self.baseMapView animateToCameraPosition:camPos];
+                                            //[self.baseMapView animateToLocation:self.startPlace.coordinate];
+                                        }
+                                        
+                                        [self.searchViewController setCurrentDirectionsModel:self.currentDirectionsModel];
                                     }];
-    
-    // TODO animate to center of startPlace and endPlace
-    [self.mapView animateToLocation:self.startPlace.coordinate];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray<CLLocation *> *)locations {
     if (!self.initialLocationSet) {
-        [self.mapView animateToLocation:[locations lastObject].coordinate];
+        [self.baseMapView animateToLocation:[locations lastObject].coordinate];
         self.initialLocationSet = true;
     }
 }
@@ -175,8 +197,8 @@
             self.startMarker.position = self.startPlace.coordinate;
             self.startMarker.snippet = self.startPlace.formattedAddress;
             self.startMarker.appearAnimation = kGMSMarkerAnimationPop;
-            self.startMarker.map = self.mapView;
-            self.startMarker.icon = [UIImage imageNamed:@"directionsMarker.png"];
+            self.startMarker.map = self.baseMapView;
+            self.startMarker.icon = [UIImage imageNamed:@"location_marker.png"];
             break;
         case SearchTypeDestination:
             self.destinationPlace = place;
@@ -188,8 +210,8 @@
             self.endMarker.position = self.destinationPlace.coordinate;
             self.endMarker.snippet = self.destinationPlace.formattedAddress;
             self.endMarker.appearAnimation = kGMSMarkerAnimationPop;
-            self.endMarker.map = self.mapView;
-            self.endMarker.icon = [UIImage imageNamed:@"directionsMarker.png"];
+            self.endMarker.map = self.baseMapView;
+            self.endMarker.icon = [UIImage imageNamed:@"location_marker.png"];
             break;
         case SearchTypeSecondary:
             self.currentSecondaryMarker = [[GMSMarker alloc] init];
@@ -198,11 +220,15 @@
             self.currentSecondaryMarker.position = place.coordinate;
             self.currentSecondaryMarker.snippet = place.formattedAddress;
             self.currentSecondaryMarker.appearAnimation = kGMSMarkerAnimationPop;
-            self.currentSecondaryMarker.map = self.mapView;
-            self.currentSecondaryMarker.icon = [UIImage imageNamed:@"directionsMarker.png"];
+            self.currentSecondaryMarker.map = self.baseMapView;
+            self.currentSecondaryMarker.icon = [UIImage imageNamed:@"location_marker.png"];
             [self.secondaryMarkers addObject:self.currentSecondaryMarker];
             [self.secondaryPlaces addObject:place];
             break;
+    }
+    
+    if (self.startPlace && self.destinationPlace) {
+        [self updateMapRoute];
     }
 }
 

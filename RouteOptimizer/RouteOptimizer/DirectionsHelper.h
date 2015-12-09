@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DirectionsModel.h"
 @import GoogleMaps;
 
 @interface DirectionsHelper : NSObject
@@ -19,7 +20,7 @@
  *  @param completion a block that expects a GMSPloyline * and/or and NSError *. Upon calculation of the directions this block will be called
  *
  */
-+ (void)plotDirectionsGivenStart:(NSString *)start destination:(NSString *)end andSecondaryDestinations:(NSArray *)secondaryDestinations onComplete:(void (^)(GMSPolyline *line, NSError *error))completion;
++ (void)plotDirectionsGivenStart:(NSString *)start destination:(NSString *)end andSecondaryDestinations:(NSArray *)secondaryDestinations onComplete:(void (^)(DirectionsModel *directions, NSError *error))completion;
 
 + (void)placeSearchWithText:(NSString *)text onComplete:(void (^)(NSArray *places, NSError *error))completion;
 
