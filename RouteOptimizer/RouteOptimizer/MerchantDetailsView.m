@@ -9,9 +9,14 @@
 #import "MerchantDetailsView.h"
 #import "SearchPlaceModel.h"
 #import "UIImageView+AFNetworking.h"
+#import <MapKit/MapKit.h>
+
+NSString *const kPhotosBaseUrl= @"https://maps.googleapis.com/maps/api/place/photo?maxwidth=124&maxwidth=117&key=AIzaSyBkWxCqBKj6rtN84UAAbYOhqDysodnAdAA&maxheight=400&photoreference=";
+//// original image request
+//https://maps.googleapis.com/maps/api/place/photo?maxwidth=124&maxwidth=117&key=AIzaSyBkWxCqBKj6rtN84UAAbYOhqDysodnAdAA&maxheight=400&photoreference=CmRdAAAA1ttOe3UysDPTKeFd2xwc4zrnd7Cdj0EvRRSz17tdmx2P7oJotMzJR-93o5Ub2cbe3XVnEVsdFWo1Dgb-3Bm6LAHia0jmkvIX0LbldhX9p3R3Sc_oivA0lZkC19_2U-ohEhCE9B0HFnst9ixHnHqu0rHeGhQPybgHRiIhslEg7cbRqgAmLRTGxA
 
 @interface MerchantDetailsView ()
-@property (strong, nonatomic) IBOutlet GMSMapView *MerchantMapView;
+@property (strong, nonatomic) IBOutlet MKMapView *MerchantMapView;
 @property (strong, nonatomic) IBOutlet UILabel *MerchantAddressLine1;
 @property (strong, nonatomic) IBOutlet UILabel *MerchantAddressLine2;
 @property (strong, nonatomic) IBOutlet UILabel *MerchantBusinessOpenHoursMessage;
@@ -34,18 +39,44 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (NSURL*) generatePhotoImgNSUrlUsingPhotoReference:(NSString*) photoReference{
+    NSString *photo_reference = photoReference;//[self.MerchantPlace.photos[0] objectForKey:@"photo_reference"];
+    NSString *imageUrlString = [NSString stringWithFormat:@"%@%@",kPhotosBaseUrl,photo_reference];
+    NSURL *imageUrl = [NSURL URLWithString:imageUrlString];
+    return imageUrl;
+}
 
 - (void) setPlaces:(SearchPlaceModel *)MerchantPlace{
     _MerchantPlace = MerchantPlace;
-    self.MerchantAddressLine1.text = @"Hyderabad";
-    
-    //self.MerchantAddressLine1.text = self.MerchantPlace.name;
+    self.MerchantAddressLine1.text = self.MerchantPlace.name;
+
     // Fix me
 //    self.MerchantAddressLine2.text = self.MerchantPlace.formattedAddress;
-//    self.MerchantMapView = self.place; // add the right one here
-//    self.MerchantBusinessOpenHoursMessage = self.MerchantPlace.openNowStatus; // add the correct one here
+
+
+    if ([self.MerchantPlace.openNowStatus objectForKey:@"open_now"]>0) {
+        self.MerchantBusinessOpenHoursMessage.text = @"Business: Open Now";
+    }
+    else{
+        self.MerchantBusinessOpenHoursMessage.text = @"Business: is Closed";
+    }
 //    self.MerchantPhoneNumber.text = self.MerchantPlace.phoneNumber;
-    [ self.MerchantBusinessImg1 setImageWithURL:self.MerchantPlace.photos[0]];
+    if (self.MerchantPlace.photos.count>0) {
+        [ self.MerchantBusinessImg1 setImageWithURL:[self generatePhotoImgNSUrlUsingPhotoReference:[self.MerchantPlace.photos[0] objectForKey:@"photo_reference"]] ];
+    }
+    if (self.MerchantPlace.photos.count>1) {
+        [ self.MerchantBusinessImg2 setImageWithURL:[self generatePhotoImgNSUrlUsingPhotoReference:[self.MerchantPlace.photos[1] objectForKey:@"photo_reference"]] ];
+    }
+
+//    MKCoordinateRegion sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.783333, -122.416667),MKCoordinateSpanMake(0.1, 0.1));
+    MKCoordinateRegion mapRegion = MKCoordinateRegionMake(self.MerchantPlace.location, MKCoordinateSpanMake(0.01,0.01));
+//    NSLog(@"location lat lng: %@",self.MerchantPlace.location);
+    [self.MerchantMapView setRegion:mapRegion animated:NO];
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    [annotation setCoordinate:self.MerchantPlace.location];
+    [self.MerchantMapView addAnnotation:annotation];
+    self.MerchantMapView.zoomEnabled = YES;
+    
 }
 /*
 #pragma mark - Navigation

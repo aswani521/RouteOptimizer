@@ -27,8 +27,8 @@
         NSDictionary *geometry = dictionary[@"geometry"];
         if (geometry) {
             if (geometry[@"location"]) {
-                CLLocationDegrees lat = [[geometry[@"location"] objectForKey:@"lat"] integerValue];
-                CLLocationDegrees lng = [[geometry[@"location"] objectForKey:@"lng"] integerValue];
+                CLLocationDegrees lat = [[geometry[@"location"] objectForKey:@"lat"] doubleValue];
+                CLLocationDegrees lng = [[geometry[@"location"] objectForKey:@"lng"] doubleValue];
                 self.location = CLLocationCoordinate2DMake(lat, lng);
             }
             
