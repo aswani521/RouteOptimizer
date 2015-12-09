@@ -22,14 +22,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6ad-IR-5YT">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="136"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                     <animations/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="136" id="ihs-2R-w0T"/>
+                        <constraint firstAttribute="height" constant="160" id="ihs-2R-w0T" userLabel="height = 160"/>
                     </constraints>
                 </mapView>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="6We-0w-PXT" userLabel="Address">
-                    <rect key="frame" x="0.0" y="136" width="320" height="54"/>
+                    <rect key="frame" x="0.0" y="159" width="320" height="54"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Patxi's Pizza San Francisco" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjw-j9-fgk">
                             <rect key="frame" x="49" y="10" width="175" height="17"/>
@@ -81,14 +81,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDu-YA-SQP" userLabel="Time">
-                    <rect key="frame" x="0.0" y="190" width="320" height="54"/>
+                    <rect key="frame" x="0.0" y="221" width="320" height="54"/>
                     <subviews>
                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="ic_qu_direction_mylocation.png" translatesAutoresizingMaskIntoConstraints="NO" id="XvB-Gv-4lT">
                             <rect key="frame" x="12" y="13" width="24" height="24"/>
                             <animations/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Open Until 9 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTw-HO-BTF">
-                            <rect key="frame" x="51" y="16" width="106" height="17"/>
+                            <rect key="frame" x="51" y="16" width="246" height="17"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -101,30 +101,8 @@
                         <constraint firstAttribute="height" constant="54" id="3oC-0v-7zO"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niZ-gB-mib" userLabel="Call">
-                    <rect key="frame" x="0.0" y="244" width="320" height="54"/>
-                    <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="ic_qu_direction_mylocation.png" translatesAutoresizingMaskIntoConstraints="NO" id="HOE-3O-TLr">
-                            <rect key="frame" x="12" y="13" width="24" height="24"/>
-                            <animations/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Call Business" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DrB-xn-bNc">
-                            <rect key="frame" x="51" y="18" width="86" height="17"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="54" id="W6F-WP-g4w"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="54" id="fcU-j1-794"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLt-r6-G2n" userLabel="PhotosLabelView">
-                    <rect key="frame" x="0.0" y="311" width="320" height="36"/>
+                    <rect key="frame" x="0.0" y="335" width="320" height="36"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHOTOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2p-ry-MPN">
                             <rect key="frame" x="14" y="9" width="57" height="17"/>
@@ -143,7 +121,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PAF-Do-NUL" userLabel="Images">
-                    <rect key="frame" x="0.0" y="355" width="320" height="231"/>
+                    <rect key="frame" x="0.0" y="379" width="320" height="189"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fGt-0w-7in" userLabel="Img1">
                             <rect key="frame" x="12" y="12" width="117" height="124"/>
@@ -172,18 +150,40 @@
                         <constraint firstAttribute="trailing" secondItem="rLb-Ut-C6H" secondAttribute="trailing" constant="17" id="s6d-UG-BoS"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niZ-gB-mib" userLabel="Call">
+                    <rect key="frame" x="0.0" y="278" width="320" height="54"/>
+                    <subviews>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="ic_qu_direction_mylocation.png" translatesAutoresizingMaskIntoConstraints="NO" id="HOE-3O-TLr">
+                            <rect key="frame" x="12" y="13" width="24" height="24"/>
+                            <animations/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Call Business" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DrB-xn-bNc">
+                            <rect key="frame" x="51" y="18" width="86" height="17"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="W6F-WP-g4w"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="54" id="fcU-j1-794"/>
+                    </constraints>
+                </view>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="niZ-gB-mib" secondAttribute="trailing" id="4Ua-cZ-6eO"/>
-                <constraint firstItem="hLt-r6-G2n" firstAttribute="top" secondItem="niZ-gB-mib" secondAttribute="bottom" constant="13" id="4c9-tR-T2n"/>
+                <constraint firstItem="hLt-r6-G2n" firstAttribute="top" secondItem="niZ-gB-mib" secondAttribute="bottom" constant="3" id="4c9-tR-T2n"/>
                 <constraint firstItem="6ad-IR-5YT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9Ep-GP-IGm"/>
-                <constraint firstAttribute="bottom" secondItem="PAF-Do-NUL" secondAttribute="bottom" constant="-18" id="Azf-n2-cIp"/>
+                <constraint firstAttribute="bottom" secondItem="PAF-Do-NUL" secondAttribute="bottom" id="Azf-n2-cIp"/>
                 <constraint firstItem="PAF-Do-NUL" firstAttribute="leading" secondItem="hLt-r6-G2n" secondAttribute="leading" id="K4j-hO-aTe"/>
                 <constraint firstItem="hLt-r6-G2n" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LKl-yh-BMx"/>
                 <constraint firstItem="PAF-Do-NUL" firstAttribute="trailing" secondItem="hLt-r6-G2n" secondAttribute="trailing" id="QoU-S8-VIL"/>
-                <constraint firstItem="niZ-gB-mib" firstAttribute="top" secondItem="hDu-YA-SQP" secondAttribute="bottom" id="RMF-gs-1ks"/>
+                <constraint firstItem="niZ-gB-mib" firstAttribute="top" secondItem="hDu-YA-SQP" secondAttribute="bottom" constant="3" id="RMF-gs-1ks"/>
                 <constraint firstItem="niZ-gB-mib" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VIj-jP-jcn"/>
                 <constraint firstAttribute="trailing" secondItem="6We-0w-PXT" secondAttribute="trailing" id="ZvF-Dw-UhD"/>
                 <constraint firstItem="hDu-YA-SQP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bYe-Zk-7ri"/>
@@ -192,8 +192,8 @@
                 <constraint firstAttribute="trailing" secondItem="6ad-IR-5YT" secondAttribute="trailing" id="hUV-gj-JHn"/>
                 <constraint firstItem="6We-0w-PXT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="m6T-tj-DNH"/>
                 <constraint firstAttribute="trailing" secondItem="hLt-r6-G2n" secondAttribute="trailing" id="pxB-di-SNh"/>
-                <constraint firstItem="6We-0w-PXT" firstAttribute="top" secondItem="6ad-IR-5YT" secondAttribute="bottom" id="qbi-Vc-Ge3"/>
-                <constraint firstItem="hDu-YA-SQP" firstAttribute="top" secondItem="6We-0w-PXT" secondAttribute="bottom" id="tqn-Wt-c5S"/>
+                <constraint firstItem="6We-0w-PXT" firstAttribute="top" secondItem="6ad-IR-5YT" secondAttribute="bottom" constant="-1" id="qbi-Vc-Ge3"/>
+                <constraint firstItem="hDu-YA-SQP" firstAttribute="top" secondItem="6We-0w-PXT" secondAttribute="bottom" constant="8" id="tqn-Wt-c5S"/>
                 <constraint firstItem="6ad-IR-5YT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ygE-W4-f5M"/>
             </constraints>
             <point key="canvasLocation" x="433" y="405"/>
