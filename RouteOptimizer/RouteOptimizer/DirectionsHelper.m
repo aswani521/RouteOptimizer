@@ -19,7 +19,7 @@ NSString *const kPlaceSearchBaseUrl = @"https://maps.googleapis.com/maps/api/pla
 @end
 
 @implementation DirectionsHelper
-+ (void)plotDirectionsGivenStart:(NSString *)start destination:(NSString *)end andSecondaryDestinations:(NSArray *)secondaryDestinations onComplete:(void (^)(GMSPolyline *line, NSError *error))completion {
++ (void)plotDirectionsGivenStart:(NSString *)start destination:(NSString *)end andSecondaryDestinations:(NSArray *)secondaryDestinations onComplete:(void (^)(DirectionsModel *line, NSError *error))completion {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
     NSString *waypoints;
@@ -37,22 +37,12 @@ NSString *const kPlaceSearchBaseUrl = @"https://maps.googleapis.com/maps/api/pla
     }
 
     [manager GET:directionsRequestUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        GMSPolyline *polyline;
-        NSString *encodedPath;
-        NSArray *routes = responseObject[@"routes"];
-        
-        if (routes.count > 0) {
-            encodedPath = routes[0][@"overview_polyline"][@"points"];
+        if ([responseObject[@"status"] isEqualToString:@"OK"]) {
+            DirectionsModel *directionsModel = [[DirectionsModel alloc] initWithDictionary:responseObject];
+            completion(directionsModel, nil);
+        } else {
+            completion(nil, nil);
         }
-        
-        if (encodedPath.length > 0) {
-            GMSPath *path = [GMSPath pathFromEncodedPath:encodedPath];
-            polyline = [GMSPolyline polylineWithPath:path];
-            polyline.strokeWidth = 7;
-            polyline.strokeColor = [UIColor blueColor];
-        }
-        completion(polyline, nil);
-
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
         NSLog(@"Error: %@", error);

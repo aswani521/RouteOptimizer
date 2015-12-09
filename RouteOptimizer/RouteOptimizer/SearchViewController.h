@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SearchPlaceModel.h"
+#import "DirectionsModel.h"
 @import GoogleMaps;
 
 typedef NS_ENUM(NSInteger, SearchType) {
@@ -29,4 +30,6 @@ typedef NS_ENUM(NSInteger, SearchType) {
 @property (strong, nonatomic) UICollectionView *searchResultCollectionView;
 
 - (void)setInitialRouteStart:(NSString *)start end:(NSString *)end andSecondaries:(NSArray *)secondaries;
+- (void)setCurrentDirectionsModel:(nullable DirectionsModel *)directionsModel;
+
 @end

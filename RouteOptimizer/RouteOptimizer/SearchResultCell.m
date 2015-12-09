@@ -41,11 +41,26 @@
                         [bolded addAttribute:NSFontAttributeName value:font range:range];
                     }];
     
+    self.tripDurationAdditionLabel.text = @"";
+    self.distanceAdditionLabel.text = @"";
     self.placeNameLabel.attributedText = bolded;
     self.placeNameSecondaryLabel.attributedText = placeData.attributedFullText;
 }
 
+- (void)setupWithPlaceData:(GMSAutocompletePrediction *)placeData existingDirections:(DirectionsModel *)existingDirections andNewDirections:(DirectionsModel *)newDirections {
+    [self setupWithPlaceData:placeData];
+    
+    if (existingDirections && newDirections) {
+        float durationDifference = newDirections.durationInMinutes - existingDirections.durationInMinutes;
+        float distanceDifference = newDirections.distanceInMiles - existingDirections.distanceInMiles;
+        self.tripDurationAdditionLabel.text = [NSString stringWithFormat:@"%+0.1f MINS", durationDifference];
+        self.distanceAdditionLabel.text = [NSString stringWithFormat:@"%+0.2f mi", distanceDifference];
+    }
+}
+
 - (void)setupWithSearchData:(NSString *)searchTerm {
+    self.tripDurationAdditionLabel.text = @"";
+    self.distanceAdditionLabel.text = @"";
     self.placeNameLabel.text = searchTerm;
 }
 

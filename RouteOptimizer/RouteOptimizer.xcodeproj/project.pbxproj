@@ -13,6 +13,7 @@
 		960ECF501BFEA20B00A50069 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF4E1BFEA20B00A50069 /* Main.storyboard */; };
 		960ECF521BFEA20B00A50069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF511BFEA20B00A50069 /* Assets.xcassets */; };
 		960ECF551BFEA20B00A50069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF531BFEA20B00A50069 /* LaunchScreen.storyboard */; };
+		96186CFE1C16CEBE00F04E9B /* DirectionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96186CFD1C16CEBE00F04E9B /* DirectionsModel.m */; settings = {ASSET_TAGS = (); }; };
 		96734F7E1C122324008CC403 /* SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F7C1C122324008CC403 /* SearchResultCell.m */; };
 		96734F7F1C122324008CC403 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96734F7D1C122324008CC403 /* SearchResultCell.xib */; };
 		96734F831C13A38F008CC403 /* SearchPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F821C13A38F008CC403 /* SearchPlaceModel.m */; };
@@ -40,6 +41,8 @@
 		960ECF511BFEA20B00A50069 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		960ECF541BFEA20B00A50069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		960ECF561BFEA20B00A50069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96186CFC1C16CEBE00F04E9B /* DirectionsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsModel.h; sourceTree = "<group>"; };
+		96186CFD1C16CEBE00F04E9B /* DirectionsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsModel.m; sourceTree = "<group>"; };
 		96734F7B1C122324008CC403 /* SearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultCell.h; sourceTree = "<group>"; };
 		96734F7C1C122324008CC403 /* SearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultCell.m; sourceTree = "<group>"; };
 		96734F7D1C122324008CC403 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 			children = (
 				96734F811C13A38F008CC403 /* SearchPlaceModel.h */,
 				96734F821C13A38F008CC403 /* SearchPlaceModel.m */,
+				96186CFC1C16CEBE00F04E9B /* DirectionsModel.h */,
+				96186CFD1C16CEBE00F04E9B /* DirectionsModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96734F8A1C13AD94008CC403 /* MapSearchResultCell.m in Sources */,
+				96186CFE1C16CEBE00F04E9B /* DirectionsModel.m in Sources */,
 				96734F7E1C122324008CC403 /* SearchResultCell.m in Sources */,
 				AD663B551C153999003153DD /* MerchantDetailsView.m in Sources */,
 				960ECF4D1BFEA20B00A50069 /* MapViewController.m in Sources */,

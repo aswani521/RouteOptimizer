@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SearchPlaceModel.h"
+#import "DirectionsModel.h"
 @import GoogleMaps;
 
 @protocol SearchResultCellDelegate
@@ -18,8 +19,8 @@
 @interface SearchResultCell : UICollectionViewCell
 @property (nonatomic, strong) id delegate;
 - (void)setupWithPlaceData:(GMSAutocompletePrediction *)placeData;
+- (void)setupWithPlaceData:(GMSAutocompletePrediction *)placeData existingDirections:(nullable DirectionsModel *)existingDirections andNewDirections:(nullable DirectionsModel *)newDirections;
 - (void)setupWithSearchPlaceData:(SearchPlaceModel *)placeData;
-//- (void)setupWithSearchPlaceData:(SearchPlaceModel *)placeData;
 - (void)setupWithSearchData:(NSString *)searchTerm;
 
 @end
