@@ -36,3 +36,7 @@
 ![Alt text](Additional\ Locations.png "Additional Locations View")
 ![Alt text](Location\ Details.png "Location Details View")
 ![Alt text](Route\ View.png "Route View")
+
+## Submission
+Most of the functionality is ready (barring few bugs)
+<img src='https://github.com/aswani521/RouteOptimizer/blob/master/routeOptimizer_submission.gif' title='StopHope Submission'>
