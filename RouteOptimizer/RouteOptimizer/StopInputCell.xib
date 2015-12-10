@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Stop" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zWl-sb-nNp">
-                        <rect key="frame" x="60" y="8" width="245" height="34"/>
+                        <rect key="frame" x="50" y="8" width="255" height="34"/>
                         <animations/>
                         <color key="backgroundColor" red="0.12549019610000001" green="0.090196078430000007" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -31,12 +31,12 @@
                         </connections>
                     </textField>
                     <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXu-3x-Jgl">
-                        <rect key="frame" x="15" y="10" width="30" height="30"/>
+                        <rect key="frame" x="15" y="15" width="20" height="20"/>
                         <animations/>
                         <color key="backgroundColor" red="0.78459900000000005" green="0.13087084907051788" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="atY-Am-F4j"/>
-                            <constraint firstAttribute="height" constant="30" id="vLe-rP-Hrv"/>
+                            <constraint firstAttribute="width" constant="20" id="atY-Am-F4j"/>
+                            <constraint firstAttribute="height" constant="20" id="vLe-rP-Hrv"/>
                         </constraints>
                         <state key="normal" image="x_icon"/>
                         <connections>

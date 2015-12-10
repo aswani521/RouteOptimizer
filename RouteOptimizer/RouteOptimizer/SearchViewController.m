@@ -48,6 +48,9 @@ float const kStopsContainerHeight = 46;
     self.searchResultCollectionView.delegate = self;
     self.searchResultCollectionView.dataSource = self;
     [self.searchResultCollectionView registerNib:[UINib nibWithNibName:@"SearchResultCell" bundle:nil] forCellWithReuseIdentifier:@"SearchResultCell"];
+    //UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    //flowLayout.estimatedItemSize = CGSizeMake(self.searchResultCollectionView.frame.size.width, 54.0);
+    //[self.searchResultCollectionView setCollectionViewLayout:flowLayout];
     
     self.currentSearchResults = [NSMutableArray array];
     
@@ -160,8 +163,11 @@ float const kStopsContainerHeight = 46;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.delegate autoCompleteSizeDidChange:collectionView.contentSize.height];
-    //return collectionView.contentSize;
-    return CGSizeMake(self.searchResultCollectionView.frame.size.width, 54);
+    //UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    //[cell layoutIfNeeded];
+    //CGSize cellSize = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    //return CGSizeMake(self.searchResultCollectionView.frame.size.width, cellSize.width);
+    return CGSizeMake(self.searchResultCollectionView.frame.size.width, 54.0);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath 
@@ -323,6 +329,13 @@ float const kStopsContainerHeight = 46;
     if (textField.text.length == 0) {
         [self.delegate autoCompleteSizeDidChange:0];
     }
+    
+    GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
+    filter.type = kGMSPlacesAutocompleteTypeFilterNoFilter;
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:self.currentDirectionsModel.northeastBound
+                                                                       coordinate:self.currentDirectionsModel.southwestBound];
+    self.placesFetcher = [[GMSAutocompleteFetcher alloc] initWithBounds:bounds filter:filter];
+    self.placesFetcher.delegate = self;
     
     [self.placesFetcher sourceTextHasChanged:textField.text];
 }
