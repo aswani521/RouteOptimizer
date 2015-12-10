@@ -17,7 +17,7 @@
 float const kSearchHeightWithStops = 162;
 float const kSearchHeightWithoutStops = 120;
 
-@interface MapViewController () <UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate, SearchViewControllerDelegate, StopInputViewControllerDelegate>
+@interface MapViewController () <UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate, SearchViewControllerDelegate, StopInputViewControllerDelegate, GMSMapViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *searchContainerView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *containerViewHeightConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *autoCompleteHeightConstraint;
@@ -44,6 +44,8 @@ float const kSearchHeightWithoutStops = 120;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //[self setNeedsStatusBarAppearanceUpdate];
+    //[self.navigationController.navigationBar setBackgroundColor:self.searchContainerView.backgroundColor];
     
     self.secondaryPlaces = [NSMutableDictionary dictionary];
     
@@ -67,6 +69,7 @@ float const kSearchHeightWithoutStops = 120;
                                                             longitude:-122.136598
                                                                  zoom:10];
     //self.baseMapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    self.baseMapView.delegate = self;
     self.baseMapView.camera = camera;
     self.baseMapView.myLocationEnabled = YES;
     //[self.baseMapView animateToLocation:self.baseMapView.myLocation.coordinate];
@@ -101,6 +104,10 @@ float const kSearchHeightWithoutStops = 120;
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
 }
+
+//- (UIStatusBarStyle)preferredStatusBarStyle {
+//    return UIStatusBarStyleLightContent;
+//}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"SearchViewControllerSegue"]) {
@@ -259,6 +266,11 @@ float const kSearchHeightWithoutStops = 120;
     [self updateMapRoute];
 }
 
+#pragma mark - GMSMapViewDelegate methods
+
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    [self detailsTouchedForPlaceIdentifier:marker.snippet];
+}
 
 # pragma mark - UICollectionViewDataSource delegate methods
 
