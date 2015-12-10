@@ -118,13 +118,13 @@ float const kSearchHeightWithoutStops = 120;
     
     for (GMSPlace *place in [self.secondaryPlaces allValues]) {
         //[secondaries addObject:[NSString stringWithFormat:@"place_id:%@", place.placeID]];
-        [secondaries addObject:place.name];
+        [secondaries addObject:place.formattedAddress];
     }
     
     //[DirectionsHelper plotDirectionsGivenStart:@"San Francisco, CA"//self.startPlace.name
     //                               destination:@"San Diego, CA"//self.destinationPlace.name
-    [DirectionsHelper plotDirectionsGivenStart:self.startPlace.name
-                                   destination:self.destinationPlace.name
+    [DirectionsHelper plotDirectionsGivenStart:self.startPlace.formattedAddress
+                                   destination:self.destinationPlace.formattedAddress
                                 andSecondaryDestinations:secondaries
                                     onComplete:^(DirectionsModel *directionsModel, NSError *error) {
                                         self.currentDirectionsModel = directionsModel;
