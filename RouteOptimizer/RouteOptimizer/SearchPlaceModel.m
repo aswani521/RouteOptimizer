@@ -39,6 +39,7 @@
         [placesClient lookUpPlaceID:self.placeId callback:^(GMSPlace * _Nullable result, NSError * _Nullable error) {
             if (result) {
                 self.place = result;
+                [self.delegate searchPlaceModel:self didCompleteLoadWithPlace:self.place];
             }
         }];
     }

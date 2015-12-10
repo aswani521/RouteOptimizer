@@ -15,7 +15,7 @@ NSString *const kPhotosBaseUrl= @"https://maps.googleapis.com/maps/api/place/pho
 //// original image request
 //https://maps.googleapis.com/maps/api/place/photo?maxwidth=124&maxwidth=117&key=AIzaSyBkWxCqBKj6rtN84UAAbYOhqDysodnAdAA&maxheight=400&photoreference=CmRdAAAA1ttOe3UysDPTKeFd2xwc4zrnd7Cdj0EvRRSz17tdmx2P7oJotMzJR-93o5Ub2cbe3XVnEVsdFWo1Dgb-3Bm6LAHia0jmkvIX0LbldhX9p3R3Sc_oivA0lZkC19_2U-ohEhCE9B0HFnst9ixHnHqu0rHeGhQPybgHRiIhslEg7cbRqgAmLRTGxA
 
-@interface MerchantDetailsView ()
+@interface MerchantDetailsView () <SearchPlaceModelDelegate>
 @property (strong, nonatomic) IBOutlet MKMapView *MerchantMapView;
 @property (strong, nonatomic) IBOutlet UILabel *MerchantAddressLine1;
 @property (strong, nonatomic) IBOutlet UILabel *MerchantAddressLine2;
@@ -32,6 +32,7 @@ NSString *const kPhotosBaseUrl= @"https://maps.googleapis.com/maps/api/place/pho
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.MerchantPlace.delegate = self;
     [self setPlaces:self.MerchantPlace];
 }
 
@@ -39,6 +40,12 @@ NSString *const kPhotosBaseUrl= @"https://maps.googleapis.com/maps/api/place/pho
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)searchPlaceModel:(SearchPlaceModel *)model didCompleteLoadWithPlace:(GMSPlace *)place {
+    // May want to just set the needed fields instead of a complete reset
+    [self setPlaces:self.MerchantPlace];
+}
+
 - (NSURL*) generatePhotoImgNSUrlUsingPhotoReference:(NSString*) photoReference{
     NSString *photo_reference = photoReference;//[self.MerchantPlace.photos[0] objectForKey:@"photo_reference"];
     NSString *imageUrlString = [NSString stringWithFormat:@"%@%@",kPhotosBaseUrl,photo_reference];

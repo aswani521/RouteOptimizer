@@ -9,7 +9,16 @@
 #import <Foundation/Foundation.h>
 @import GoogleMaps;
 
+@class SearchPlaceModel;
+
+@protocol SearchPlaceModelDelegate
+- (void)searchPlaceModel:(SearchPlaceModel *)model didCompleteLoadWithPlace:(GMSPlace *)place;
+
+@end
+
 @interface SearchPlaceModel : NSObject
+@property (nonatomic, strong) id<SearchPlaceModelDelegate> delegate;
+
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *placeId;
 //@property (nonatomic, strong) NSString *phoneNumber;
