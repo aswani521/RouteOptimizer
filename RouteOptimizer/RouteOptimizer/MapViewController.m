@@ -16,14 +16,20 @@
 
 float const kSearchHeightWithStops = 162;
 float const kSearchHeightWithoutStops = 120;
+float const kSuggestionsHeight = 92;
+float const kSummaryHeight = 64;
 
 @interface MapViewController () <UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate, SearchViewControllerDelegate, StopInputViewControllerDelegate, GMSMapViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *searchContainerView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *containerViewHeightConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *autoCompleteHeightConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *searchCollectionHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *suggestionsHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *summaryHeightConstraint;
 @property (strong, nonatomic) IBOutlet UICollectionView *autocompleteCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionView *searchCollectionView;
+@property (strong, nonatomic) IBOutlet UILabel *durationDistanceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *etaLabel;
 @property (strong, nonatomic) IBOutlet GMSMapView *baseMapView;
 
 @property (nonatomic, strong) SearchViewController *searchViewController;
@@ -88,6 +94,8 @@ float const kSearchHeightWithoutStops = 120;
     self.searchCollectionView.dataSource = self;
     self.searchCollectionView.delegate = self;
     self.searchCollectionHeightConstraint.constant = 0;
+    self.suggestionsHeightConstraint.constant = 0;
+    self.summaryHeightConstraint.constant = 0;
     self.containerViewHeightConstraint.constant = kSearchHeightWithoutStops;
     [self.searchCollectionView registerNib:[UINib nibWithNibName:@"MapSearchResultCell" bundle:nil] forCellWithReuseIdentifier:@"MapSearchResultCell"];
 
@@ -140,10 +148,23 @@ float const kSearchHeightWithoutStops = 120;
                                         self.mapLine.map = self.baseMapView;
                                         
                                         if (self.currentDirectionsModel) {
+                                                NSDate *now = [NSDate date];
+                                                NSDate *eta = [now dateByAddingTimeInterval:self.currentDirectionsModel.durationInSeconds];
+                                                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                                                [formatter setDateFormat:@"hh:mm a"];
+                                                NSLog(@"Current Date: %@", [formatter stringFromDate:[NSDate date]]);
+                                                NSString *etaTime = [formatter stringFromDate:eta];
+                                                self.etaLabel.text = [NSString stringWithFormat:@"%@ ETA", etaTime];
+                                                
+                                                self.durationDistanceLabel.text = [NSString stringWithFormat:@"%0.1f min - %0.1f mi", self.currentDirectionsModel.durationInMinutes, self.currentDirectionsModel.distanceInMiles];
+                                            
                                             if (self.containerViewHeightConstraint.constant != kSearchHeightWithStops) {
                                                 [self.searchViewController animateStopsInputOpen];
+                                                
                                                 [UIView animateWithDuration:1.0 animations:^{
                                                     self.containerViewHeightConstraint.constant = kSearchHeightWithStops;
+                                                    self.summaryHeightConstraint.constant = kSummaryHeight;
+                                                    self.suggestionsHeightConstraint.constant = kSuggestionsHeight;
                                                     [self.view layoutIfNeeded];
                                                 }];
                                             }

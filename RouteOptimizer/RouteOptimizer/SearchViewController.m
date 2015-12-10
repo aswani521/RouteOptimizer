@@ -280,7 +280,7 @@ float const kStopsContainerHeight = 46;
     
     [self.searchResultCollectionView.collectionViewLayout invalidateLayout];
     for (GMSAutocompletePrediction *prediction in predictions) {
-        NSLog(@"%@", prediction);
+        //NSLog(@"%@", prediction);
     }
 }
 
