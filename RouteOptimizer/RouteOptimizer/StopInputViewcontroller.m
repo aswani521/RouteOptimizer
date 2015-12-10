@@ -60,7 +60,15 @@
         cell.delegate = self;
         
         if (self.currentStopDestinations.count > 0) {
-            cell.stopTextField.text = [[self.currentStopDestinations allKeysForObject:@(indexPath.row)] firstObject];
+            NSString *stopText = [[self.currentStopDestinations allKeysForObject:@(indexPath.row)] firstObject];
+            if (stopText.length > 0) {
+                cell.stopTextField.text = stopText;
+                [cell setupCellWithRemoveButton:YES];
+            } else {
+                [cell setupCellWithRemoveButton:NO];
+            }
+        } else {
+            [cell setupCellWithRemoveButton:NO];
         }
     }
     
@@ -68,7 +76,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(self.stopInputCollection.frame.size.width - 60, 50); // Will not be size 50
+    return CGSizeMake(self.stopInputCollection.frame.size.width - 75, 50); // Will not be size 50
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,6 +123,10 @@
     if (existingAddress) {
         [self.currentStopDestinations removeObjectForKey:existingAddress];
         [self.delegate removeStopWithFormattedAddress:existingAddress];
+        NSArray *allKeys = [self.currentStopDestinations allKeys];
+        for (int i = 0; i < allKeys.count; i++) {
+            self.currentStopDestinations[[allKeys objectAtIndex:i]] = @(i);
+        }
     }
     [self.stopInputCollection reloadData];
     

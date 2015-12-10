@@ -178,6 +178,7 @@ float const kSearchHeightWithoutStops = 120;
 
 - (void)autoCompleteSizeDidChange:(float)autocomleteHeight {
     // Maybe constrain this between 0 and 200
+    self.searchViewController.searchResultCollectionView.hidden = NO;
     self.autoCompleteHeightConstraint.constant = autocomleteHeight;
 }
 
@@ -254,6 +255,7 @@ float const kSearchHeightWithoutStops = 120;
     GMSMarker *marker = self.secondaryMarkers[formattedAddress];
     marker.map = nil;
     [self.secondaryMarkers removeObjectForKey:formattedAddress];
+    [self updateMapRoute];
 }
 
 
