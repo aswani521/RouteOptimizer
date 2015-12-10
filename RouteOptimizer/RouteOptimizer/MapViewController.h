@@ -12,7 +12,7 @@
 @interface MapViewController : UIViewController
 @property (nonatomic,strong) GMSPlace *startPlace;
 @property (nonatomic,strong) GMSPlace *destinationPlace;
-@property (nonatomic,strong) NSMutableArray *secondaryPlaces;
+@property (nonatomic,strong) NSMutableDictionary *secondaryPlaces;
 
 @end
 

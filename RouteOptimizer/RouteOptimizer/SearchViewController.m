@@ -20,7 +20,6 @@ float const kStopsContainerHeight = 46;
 @interface SearchViewController () <SearchResultCellDelegate, GMSAutocompleteFetcherDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *startAddress;
 @property (strong, nonatomic) IBOutlet UITextField *endAddress;
-@property (strong, nonatomic) IBOutlet UITextField *searchTerm;
 //TODO: THIS NEEDS TO ANIMATE (MAYBE USE ADLivelyCollectionView)
 //TODO: ANIMATE this on screen on textField touch, and animate the textField up with it!!!!
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *stopsContainerViewHeightConstraint;
@@ -36,6 +35,7 @@ float const kStopsContainerHeight = 46;
 @property (nonatomic, strong) NSString *initialStartText;
 @property (nonatomic, strong) NSString *initialEndText;
 @property (nonatomic, strong) NSString *initialSecondaryText;
+@property (nonatomic, assign) StopInputViewcontroller *stopInputViewController;
 
 @end
 
@@ -65,7 +65,6 @@ float const kStopsContainerHeight = 46;
     
     self.startAddress.text = self.initialStartText;
     self.endAddress.text = self.initialEndText;
-    self.searchTerm.text = self.initialSecondaryText;
     
     self.directionsModelsForCurrentSearchResults = [NSMutableDictionary dictionary];
     
@@ -83,6 +82,20 @@ float const kStopsContainerHeight = 46;
     _currentDirectionsModel = directionsModel;
 }
 
+- (void)animateStopsInputOpen {
+    [UIView animateWithDuration:3.25 animations:^{
+        self.stopsContainerViewHeightConstraint.constant = kStopsContainerHeight;
+        self.destinationToStopsHeightConstraint.constant = 0;
+    }];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"StopInputViewControllerSegue"]) {
+        self.stopInputViewController = (StopInputViewcontroller *)(segue.destinationViewController);
+        self.stopInputViewController.delegate = self;
+    }
+}
+
 - (IBAction)findRouteButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -94,11 +107,6 @@ float const kStopsContainerHeight = 46;
 
 - (IBAction)destinationDidBeginEditing:(UITextField *)sender {
     self.selectedSearchType = SearchTypeDestination;
-    [self setupForAutoCompleteWithText:sender.text];
-}
-
-- (IBAction)secondaryDestinationDidBeginEditing:(UITextField *)sender {
-    self.selectedSearchType = SearchTypeSecondary;
     [self setupForAutoCompleteWithText:sender.text];
 }
 
@@ -139,9 +147,6 @@ float const kStopsContainerHeight = 46;
                 case SearchTypeDestination:
                     [cell setupWithSearchData:[NSString stringWithFormat:@"Search: %@", self.endAddress.text]];
                     break;
-                case SearchTypeSecondary:
-                    [cell setupWithSearchData:[NSString stringWithFormat:@"Search: %@", self.searchTerm.text]];
-                    break;
             }
         } else {
             GMSAutocompletePrediction *prediction = self.currentSearchResults[indexPath.row-1];
@@ -170,7 +175,7 @@ float const kStopsContainerHeight = 46;
                 [self placeSearchWithText:self.endAddress.text];
                 break;
             case SearchTypeSecondary:
-                [self placeSearchWithText:self.searchTerm.text];
+                //[self placeSearchWithText:self.searchTerm.text];
                 break;
         }
     } else {
@@ -193,7 +198,7 @@ float const kStopsContainerHeight = 46;
                             self.endAddress.text = place.formattedAddress;
                             break;
                         case SearchTypeSecondary:
-                            self.searchTerm.text = place.formattedAddress;
+                            [self.stopInputViewController didCompleteSelectionForPlaceWithAddress:place.formattedAddress];
                             break;
                     }
                     
@@ -282,7 +287,7 @@ float const kStopsContainerHeight = 46;
 }
 
 
-#pragma mark UIGestureRecognizerDelegate method
+#pragma mark - UIGestureRecognizerDelegate method
 
 // Only neccessary to make sure we deselect everyting when the user clicks outside of the textfield or collection view
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
@@ -296,10 +301,36 @@ float const kStopsContainerHeight = 46;
     return YES;
 }
 
-#pragma mark SearchResultCellDelegate methods
+#pragma mark - SearchResultCellDelegate methods
 
 - (void)detailsWasTouchedForPlace:(NSString *)placeIdentifier {
     [self.delegate detailsTouchedForPlaceIdentifier:placeIdentifier];
+}
+
+#pragma mark - StopInpuCell delegate methods
+
+- (void)stopDestinationDidBeginEditing:(UITextField *)textField {
+    self.selectedSearchType = SearchTypeSecondary;
+    [self setupForAutoCompleteWithText:textField.text];
+}
+
+- (void)stopDestinationDidEndEditing:(UITextField *)textField {
+    [self.delegate autoCompleteSizeDidChange:0];
+    [self.view layoutIfNeeded];
+}
+
+- (void)stopDestinationSearchTextDidChange:(UITextField *)textField {
+    if (textField.text.length == 0) {
+        [self.delegate autoCompleteSizeDidChange:0];
+    }
+    
+    [self.placesFetcher sourceTextHasChanged:textField.text];
+}
+
+#pragma mark - StopInputViewController delegate methods
+
+- (void)removeStopWithFormattedAddress:(NSString *)formattedAddress {
+    [self.delegate removeStopWithFormattedAddress:formattedAddress];
 }
 
 // Handles de-selection when user clicks on whitespace
@@ -307,15 +338,13 @@ float const kStopsContainerHeight = 46;
     self.searchResultCollectionView.hidden = YES;
     [self.startAddress resignFirstResponder];
     [self.endAddress resignFirstResponder];
-    [self.searchTerm resignFirstResponder];
-    //self.autoCompleteHeight.constant = 0;
+    [self.stopInputViewController resignFirstResponder]; // ? Not sure if this will work
     [self.view layoutIfNeeded];
 }
 
 // Presents the autocomplete collection view
 // We should animate this
 - (void)setupForAutoCompleteWithText:(NSString *)initialText {
-    //self.autoCompleteHeight.constant = 300;
     if (initialText.length > 0) {
         [self.placesFetcher sourceTextHasChanged:initialText];
     } else {

@@ -177,6 +177,23 @@
                                     <action selector="searchTextDidChange:" destination="s5C-YS-F4Z" eventType="editingChanged" id="x40-nU-Gki"/>
                                 </connections>
                             </textField>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1M1-HT-xgB">
+                                <rect key="frame" x="0.0" y="74" width="320" height="46"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="K7q-Pb-2bF"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="IDE-tq-JXI" kind="embed" identifier="StopInputViewControllerSegue" id="UJX-3K-bPU"/>
+                                </connections>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stophop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1p-5b-dIA">
+                                <rect key="frame" x="120" y="12" width="79" height="24"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Destination" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MUy-UG-9VO">
                                 <rect key="frame" x="15" y="120" width="290" height="30"/>
                                 <animations/>
@@ -195,46 +212,21 @@
                                     <action selector="searchTextDidChange:" destination="s5C-YS-F4Z" eventType="editingChanged" id="ufH-JW-PYT"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stophop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1p-5b-dIA">
-                                <rect key="frame" x="120" y="12" width="79" height="24"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Stop" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="j7g-ey-zTy">
-                                <rect key="frame" x="15" y="82" width="290" height="30"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.12549019610000001" green="0.090196078430000007" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="searchEditingDidEnd:" destination="s5C-YS-F4Z" eventType="editingDidEnd" id="lSp-Kq-paJ"/>
-                                    <action selector="searchTextDidChange:" destination="s5C-YS-F4Z" eventType="editingChanged" id="puM-bt-BJt"/>
-                                    <action selector="secondaryDestinationDidBeginEditing:" destination="s5C-YS-F4Z" eventType="editingDidBegin" id="vUB-se-Cs9"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.27843137254901962" green="0.17254901960784313" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="j7g-ey-zTy" firstAttribute="top" secondItem="IRJ-7F-Zmq" secondAttribute="bottom" constant="8" id="1hz-Oa-DB4"/>
-                            <constraint firstAttribute="trailing" secondItem="j7g-ey-zTy" secondAttribute="trailing" constant="15" id="7cE-Vv-BhM"/>
                             <constraint firstItem="fv0-l2-yiI" firstAttribute="top" secondItem="MUy-UG-9VO" secondAttribute="bottom" constant="8" id="9yQ-Y2-g75"/>
-                            <constraint firstItem="j7g-ey-zTy" firstAttribute="leading" secondItem="hLl-a7-qcM" secondAttribute="leading" constant="15" id="PcT-DY-brc"/>
+                            <constraint firstItem="1M1-HT-xgB" firstAttribute="top" secondItem="IRJ-7F-Zmq" secondAttribute="bottom" id="COy-0o-Ref"/>
+                            <constraint firstAttribute="trailing" secondItem="1M1-HT-xgB" secondAttribute="trailing" id="Otx-8h-T6Q"/>
                             <constraint firstItem="IRJ-7F-Zmq" firstAttribute="leading" secondItem="hLl-a7-qcM" secondAttribute="leading" constant="15" id="XML-y6-BOH"/>
                             <constraint firstItem="b1p-5b-dIA" firstAttribute="top" secondItem="SKh-s7-eqc" secondAttribute="bottom" constant="12" id="XSO-GX-r8g"/>
                             <constraint firstAttribute="trailing" secondItem="MUy-UG-9VO" secondAttribute="trailing" constant="15" id="ZB4-e2-8xF"/>
+                            <constraint firstItem="1M1-HT-xgB" firstAttribute="leading" secondItem="hLl-a7-qcM" secondAttribute="leading" id="aGv-FF-edY"/>
                             <constraint firstAttribute="trailing" secondItem="IRJ-7F-Zmq" secondAttribute="trailing" constant="15" id="dpt-Pw-cXf"/>
+                            <constraint firstItem="MUy-UG-9VO" firstAttribute="top" secondItem="1M1-HT-xgB" secondAttribute="bottom" id="dsc-Fx-RMP"/>
                             <constraint firstItem="b1p-5b-dIA" firstAttribute="centerX" secondItem="hLl-a7-qcM" secondAttribute="centerX" id="jxW-cY-bYp"/>
-                            <constraint firstItem="MUy-UG-9VO" firstAttribute="top" secondItem="j7g-ey-zTy" secondAttribute="bottom" constant="8" id="xmV-5K-lCN"/>
                             <constraint firstItem="IRJ-7F-Zmq" firstAttribute="top" secondItem="b1p-5b-dIA" secondAttribute="bottom" constant="8" id="y3B-xP-MgR"/>
                             <constraint firstItem="MUy-UG-9VO" firstAttribute="leading" secondItem="hLl-a7-qcM" secondAttribute="leading" constant="15" id="ztr-YN-pHV"/>
                         </constraints>
@@ -243,9 +235,10 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="destinationToStopsHeightConstraint" destination="dsc-Fx-RMP" id="1jR-vj-ODM"/>
                         <outlet property="endAddress" destination="MUy-UG-9VO" id="tyi-fA-l43"/>
-                        <outlet property="searchTerm" destination="j7g-ey-zTy" id="rmo-P6-mU0"/>
                         <outlet property="startAddress" destination="IRJ-7F-Zmq" id="9mu-sK-Dai"/>
+                        <outlet property="stopsContainerViewHeightConstraint" destination="K7q-Pb-2bF" id="pcf-Tr-vQi"/>
                         <outlet property="tapToDismissGestureRecognizer" destination="Cyf-Z0-MSp" id="b0I-Un-FLA"/>
                     </connections>
                 </viewController>
@@ -254,41 +247,39 @@
             </objects>
             <point key="canvasLocation" x="27" y="1058"/>
         </scene>
-        <!--View Controller-->
+        <!--Stop Input Viewcontroller-->
         <scene sceneID="AXz-Mq-3CN">
             <objects>
-                <viewController id="IDE-tq-JXI" sceneMemberID="viewController">
+                <viewController id="IDE-tq-JXI" customClass="StopInputViewcontroller" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u4h-dc-R8a">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Stop" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Kr1-WD-4p0">
-                                <rect key="frame" x="15" y="8" width="51.5" height="552"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZMh-pm-piD">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.12549019607843137" green="0.090196078431372548" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="searchEditingDidEnd:" destination="s5C-YS-F4Z" eventType="editingDidEnd" id="g0O-Ka-axI"/>
-                                    <action selector="searchTextDidChange:" destination="s5C-YS-F4Z" eventType="editingChanged" id="2ct-0v-AbO"/>
-                                    <action selector="secondaryDestinationDidBeginEditing:" destination="s5C-YS-F4Z" eventType="editingDidBegin" id="axC-8T-zxx"/>
-                                </connections>
-                            </textField>
+                                <color key="backgroundColor" red="0.27843137254901962" green="0.17254901960784313" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ljN-Fr-QqL">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.27843137254901962" green="0.17254901960784313" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Kr1-WD-4p0" firstAttribute="top" secondItem="u4h-dc-R8a" secondAttribute="top" constant="8" id="6Iv-zp-HOq"/>
-                            <constraint firstItem="Kr1-WD-4p0" firstAttribute="leading" secondItem="u4h-dc-R8a" secondAttribute="leading" constant="15" id="9ms-ZS-LAU"/>
-                            <constraint firstAttribute="trailing" secondItem="Kr1-WD-4p0" secondAttribute="trailing" constant="15" id="bnP-zh-NfF"/>
-                            <constraint firstAttribute="bottom" secondItem="Kr1-WD-4p0" secondAttribute="bottom" constant="8" id="pEy-K8-U1x"/>
+                            <constraint firstAttribute="bottom" secondItem="ZMh-pm-piD" secondAttribute="bottom" id="9aT-Yp-XDv"/>
+                            <constraint firstItem="ZMh-pm-piD" firstAttribute="leading" secondItem="u4h-dc-R8a" secondAttribute="leading" id="LED-Yg-yMp"/>
+                            <constraint firstAttribute="trailing" secondItem="ZMh-pm-piD" secondAttribute="trailing" id="eIp-cM-6WB"/>
+                            <constraint firstItem="ZMh-pm-piD" firstAttribute="top" secondItem="u4h-dc-R8a" secondAttribute="top" id="nWW-kH-A43"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="stopInputCollection" destination="ZMh-pm-piD" id="hvb-2N-EXw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pIT-xn-M1h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

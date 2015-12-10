@@ -17,7 +17,7 @@
 float const kSearchHeightWithStops = 158;
 float const kSearchHeightWithoutStops = 120;
 
-@interface MapViewController () <UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate, SearchViewControllerDelegate>
+@interface MapViewController () <UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate, SearchViewControllerDelegate, StopInputViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIView *searchContainerView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *containerViewHeightConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *autoCompleteHeightConstraint;
@@ -32,7 +32,7 @@ float const kSearchHeightWithoutStops = 120;
 @property (nonatomic, strong) GMSMarker *startMarker;
 @property (nonatomic, strong) GMSMarker *endMarker;
 @property (nonatomic, strong) GMSMarker *currentSecondaryMarker;
-@property (nonatomic, strong) NSMutableArray *secondaryMarkers;
+@property (nonatomic, strong) NSMutableDictionary *secondaryMarkers;
 @property (nonatomic, strong) NSMutableArray *searchResults;
 @property (nonatomic, assign) BOOL initialLocationSet;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -45,7 +45,7 @@ float const kSearchHeightWithoutStops = 120;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.secondaryPlaces = [NSMutableArray array];
+    self.secondaryPlaces = [NSMutableDictionary dictionary];
     
     //UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"directionsIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(directionsBtnClicked:)];
     //self.navigationItem.rightBarButtonItem = searchButton;
@@ -74,7 +74,7 @@ float const kSearchHeightWithoutStops = 120;
 
     self.startMarker = [[GMSMarker alloc] init];
     self.endMarker = [[GMSMarker alloc] init];
-    self.secondaryMarkers = [NSMutableArray array];
+    self.secondaryMarkers = [NSMutableDictionary dictionary];
 
     //[self.baseMapView insertSubview:self.baseMapView atIndex:0];
     //[self.baseMapView insertSubview:self.autocompleteCollectionView atIndex:0];
@@ -85,7 +85,7 @@ float const kSearchHeightWithoutStops = 120;
     self.searchCollectionView.dataSource = self;
     self.searchCollectionView.delegate = self;
     self.searchCollectionHeightConstraint.constant = 0;
-    //self.containerViewHeightConstraint.constant = kSearchHeightWithoutStops;
+    self.containerViewHeightConstraint.constant = kSearchHeightWithoutStops;
     [self.searchCollectionView registerNib:[UINib nibWithNibName:@"MapSearchResultCell" bundle:nil] forCellWithReuseIdentifier:@"MapSearchResultCell"];
 
     [self updateMapRoute];
@@ -116,13 +116,15 @@ float const kSearchHeightWithoutStops = 120;
     NSLog(@"Start Address: %@ End Address: %@",self.startPlace, self.destinationPlace);
     NSMutableArray *secondaries = [NSMutableArray array];
     
-    for (GMSPlace *place in self.secondaryPlaces) {
+    for (GMSPlace *place in [self.secondaryPlaces allValues]) {
         //[secondaries addObject:[NSString stringWithFormat:@"place_id:%@", place.placeID]];
         [secondaries addObject:place.name];
     }
     
-    [DirectionsHelper plotDirectionsGivenStart:self.startPlace.name//[NSString stringWithFormat:@"place_id:%@", self.startPlace.placeID]
-                                   destination:self.destinationPlace.name//[NSString stringWithFormat:@"place_id:%@", self.destinationPlace.placeID]
+    //[DirectionsHelper plotDirectionsGivenStart:@"San Francisco, CA"//self.startPlace.name
+    //                               destination:@"San Diego, CA"//self.destinationPlace.name
+    [DirectionsHelper plotDirectionsGivenStart:self.startPlace.name
+                                   destination:self.destinationPlace.name
                                 andSecondaryDestinations:secondaries
                                     onComplete:^(DirectionsModel *directionsModel, NSError *error) {
                                         self.currentDirectionsModel = directionsModel;
@@ -131,17 +133,16 @@ float const kSearchHeightWithoutStops = 120;
                                         self.mapLine.map = self.baseMapView;
                                         
                                         if (self.currentDirectionsModel) {
-                                            //if (self.containerViewHeightConstraint.constant != kSearchHeightWithStops) {
-                                            //    [UIView animateWithDuration:1.0 animations:^{
-                                            //        self.containerViewHeightConstraint.constant = kSearchHeightWithStops;
-                                            //    }];
-                                            //}
+                                            if (self.containerViewHeightConstraint.constant != kSearchHeightWithStops) {
+                                                [self.searchViewController animateStopsInputOpen];
+                                                [UIView animateWithDuration:3.0 animations:^{
+                                                    self.containerViewHeightConstraint.constant = kSearchHeightWithStops;
+                                                }];
+                                            }
                                             
                                             GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:self.currentDirectionsModel.southwestBound coordinate:self.currentDirectionsModel.northeastBound];
                                             GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:40.0f];
                                             [self.baseMapView moveCamera:update];
-                                            //[self.baseMapView animateToCameraPosition:camPos];
-                                            //[self.baseMapView animateToLocation:self.startPlace.coordinate];
                                         }
                                         
                                         [self.searchViewController setCurrentDirectionsModel:self.currentDirectionsModel];
@@ -164,12 +165,12 @@ float const kSearchHeightWithoutStops = 120;
     searchViewController.delegate = self;
     
     NSMutableArray *secondaries = [NSMutableArray array];
-    for (GMSPlace *place in self.secondaryPlaces) {
+    for (GMSPlace *place in [self.secondaryPlaces allValues]) {
         [secondaries addObject:place.name];
     }
     [searchViewController setInitialRouteStart:self.startPlace.name end:self.destinationPlace.name andSecondaries:secondaries];
     
-    self.secondaryMarkers = [NSMutableArray array];
+    self.secondaryMarkers = [NSMutableDictionary dictionary];
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
@@ -222,8 +223,8 @@ float const kSearchHeightWithoutStops = 120;
             self.currentSecondaryMarker.appearAnimation = kGMSMarkerAnimationPop;
             self.currentSecondaryMarker.map = self.baseMapView;
             self.currentSecondaryMarker.icon = [UIImage imageNamed:@"location_marker.png"];
-            [self.secondaryMarkers addObject:self.currentSecondaryMarker];
-            [self.secondaryPlaces addObject:place];
+            self.secondaryMarkers[place.formattedAddress] = self.currentSecondaryMarker;
+            self.secondaryPlaces[place.formattedAddress] = place;
             break;
     }
     
@@ -245,6 +246,16 @@ float const kSearchHeightWithoutStops = 120;
         [self.navigationController pushViewController:mdvc animated:YES];
     }];
 }
+
+#pragma mark - StopInputViewController delegate methods
+
+- (void)removeStopWithFormattedAddress:(NSString *)formattedAddress {
+    [self.secondaryPlaces removeObjectForKey:formattedAddress];
+    GMSMarker *marker = self.secondaryMarkers[formattedAddress];
+    marker.map = nil;
+    [self.secondaryMarkers removeObjectForKey:formattedAddress];
+}
+
 
 # pragma mark - UICollectionViewDataSource delegate methods
 
