@@ -14,7 +14,7 @@
 #import "MerchantDetailsView.h"
 #import "DirectionsModel.h"
 
-float const kSearchHeightWithStops = 158;
+float const kSearchHeightWithStops = 162;
 float const kSearchHeightWithoutStops = 120;
 
 @interface MapViewController () <UICollectionViewDataSource, UICollectionViewDelegate, CLLocationManagerDelegate, SearchViewControllerDelegate, StopInputViewControllerDelegate>
@@ -135,8 +135,9 @@ float const kSearchHeightWithoutStops = 120;
                                         if (self.currentDirectionsModel) {
                                             if (self.containerViewHeightConstraint.constant != kSearchHeightWithStops) {
                                                 [self.searchViewController animateStopsInputOpen];
-                                                [UIView animateWithDuration:3.0 animations:^{
+                                                [UIView animateWithDuration:1.0 animations:^{
                                                     self.containerViewHeightConstraint.constant = kSearchHeightWithStops;
+                                                    [self.view layoutIfNeeded];
                                                 }];
                                             }
                                             

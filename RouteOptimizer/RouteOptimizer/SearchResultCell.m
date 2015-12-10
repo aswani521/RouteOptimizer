@@ -22,7 +22,8 @@
 @implementation SearchResultCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    self.contentView.translatesAutoresizingMaskIntoConstraints = YES;
 }
 
 - (void)setupWithPlaceData:(GMSAutocompletePrediction *)placeData {
