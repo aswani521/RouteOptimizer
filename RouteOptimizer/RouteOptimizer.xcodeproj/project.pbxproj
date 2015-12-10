@@ -14,6 +14,9 @@
 		960ECF521BFEA20B00A50069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF511BFEA20B00A50069 /* Assets.xcassets */; };
 		960ECF551BFEA20B00A50069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 960ECF531BFEA20B00A50069 /* LaunchScreen.storyboard */; };
 		96186CFE1C16CEBE00F04E9B /* DirectionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96186CFD1C16CEBE00F04E9B /* DirectionsModel.m */; settings = {ASSET_TAGS = (); }; };
+		96186D011C18928A00F04E9B /* StopInputViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 96186D001C18928A00F04E9B /* StopInputViewcontroller.m */; settings = {ASSET_TAGS = (); }; };
+		96186D051C18935200F04E9B /* StopInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96186D031C18935200F04E9B /* StopInputCell.m */; settings = {ASSET_TAGS = (); }; };
+		96186D061C18935200F04E9B /* StopInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96186D041C18935200F04E9B /* StopInputCell.xib */; settings = {ASSET_TAGS = (); }; };
 		96734F7E1C122324008CC403 /* SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F7C1C122324008CC403 /* SearchResultCell.m */; };
 		96734F7F1C122324008CC403 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96734F7D1C122324008CC403 /* SearchResultCell.xib */; };
 		96734F831C13A38F008CC403 /* SearchPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96734F821C13A38F008CC403 /* SearchPlaceModel.m */; };
@@ -43,6 +46,11 @@
 		960ECF561BFEA20B00A50069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96186CFC1C16CEBE00F04E9B /* DirectionsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsModel.h; sourceTree = "<group>"; };
 		96186CFD1C16CEBE00F04E9B /* DirectionsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsModel.m; sourceTree = "<group>"; };
+		96186CFF1C18928A00F04E9B /* StopInputViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopInputViewcontroller.h; sourceTree = "<group>"; };
+		96186D001C18928A00F04E9B /* StopInputViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopInputViewcontroller.m; sourceTree = "<group>"; };
+		96186D021C18935200F04E9B /* StopInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopInputCell.h; sourceTree = "<group>"; };
+		96186D031C18935200F04E9B /* StopInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopInputCell.m; sourceTree = "<group>"; };
+		96186D041C18935200F04E9B /* StopInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StopInputCell.xib; sourceTree = "<group>"; };
 		96734F7B1C122324008CC403 /* SearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultCell.h; sourceTree = "<group>"; };
 		96734F7C1C122324008CC403 /* SearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultCell.m; sourceTree = "<group>"; };
 		96734F7D1C122324008CC403 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
@@ -115,6 +123,8 @@
 				96FECC6F1C062A7D00D410FA /* DirectionsHelper.m */,
 				96734F841C13ACD1008CC403 /* MapSearchViewController.h */,
 				96734F851C13ACD1008CC403 /* MapSearchViewController.m */,
+				96186CFF1C18928A00F04E9B /* StopInputViewcontroller.h */,
+				96186D001C18928A00F04E9B /* StopInputViewcontroller.m */,
 			);
 			path = RouteOptimizer;
 			sourceTree = "<group>";
@@ -139,6 +149,9 @@
 				AD663B521C153999003153DD /* MerchantDetailsView.h */,
 				AD663B531C153999003153DD /* MerchantDetailsView.m */,
 				AD663B541C153999003153DD /* MerchantDetailsView.xib */,
+				96186D021C18935200F04E9B /* StopInputCell.h */,
+				96186D031C18935200F04E9B /* StopInputCell.m */,
+				96186D041C18935200F04E9B /* StopInputCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -234,6 +247,7 @@
 			files = (
 				960ECF551BFEA20B00A50069 /* LaunchScreen.storyboard in Resources */,
 				960ECF521BFEA20B00A50069 /* Assets.xcassets in Resources */,
+				96186D061C18935200F04E9B /* StopInputCell.xib in Resources */,
 				96734F7F1C122324008CC403 /* SearchResultCell.xib in Resources */,
 				96734F8B1C13AD94008CC403 /* MapSearchResultCell.xib in Resources */,
 				960ECF501BFEA20B00A50069 /* Main.storyboard in Resources */,
@@ -297,11 +311,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				96734F8A1C13AD94008CC403 /* MapSearchResultCell.m in Sources */,
+				96186D011C18928A00F04E9B /* StopInputViewcontroller.m in Sources */,
 				96186CFE1C16CEBE00F04E9B /* DirectionsModel.m in Sources */,
 				96734F7E1C122324008CC403 /* SearchResultCell.m in Sources */,
 				AD663B551C153999003153DD /* MerchantDetailsView.m in Sources */,
 				960ECF4D1BFEA20B00A50069 /* MapViewController.m in Sources */,
 				96734F831C13A38F008CC403 /* SearchPlaceModel.m in Sources */,
+				96186D051C18935200F04E9B /* StopInputCell.m in Sources */,
 				96FECC701C062A7D00D410FA /* DirectionsHelper.m in Sources */,
 				AD0536671C06AA7A00C12D12 /* SearchViewController.m in Sources */,
 				960ECF4A1BFEA20B00A50069 /* AppDelegate.m in Sources */,

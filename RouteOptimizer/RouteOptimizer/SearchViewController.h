@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SearchPlaceModel.h"
 #import "DirectionsModel.h"
+#import "StopInputCell.h"
+#import "StopInputViewcontroller.h"
 @import GoogleMaps;
 
 typedef NS_ENUM(NSInteger, SearchType) {
@@ -25,11 +27,15 @@ typedef NS_ENUM(NSInteger, SearchType) {
 
 @end
 
-@interface SearchViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
-@property (nonatomic, strong) id <SearchViewControllerDelegate> delegate;
+@interface SearchViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, StopInputCellDelegate, StopInputViewControllerDelegate>
+@property (nonatomic, strong) id <SearchViewControllerDelegate, StopInputViewControllerDelegate> delegate;
 @property (strong, nonatomic) UICollectionView *searchResultCollectionView;
 
 - (void)setInitialRouteStart:(NSString *)start end:(NSString *)end andSecondaries:(NSArray *)secondaries;
 - (void)setCurrentDirectionsModel:(nullable DirectionsModel *)directionsModel;
+- (void)stopDestinationDidBeginEditing:(UITextField *)textField;
+- (void)stopDestinationDidEndEditing:(UITextField *)textField;
+- (void)stopDestinationSearchTextDidChange:(UITextField *)textField;
+- (void)animateStopsInputOpen;
 
 @end
