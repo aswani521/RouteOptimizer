@@ -324,6 +324,13 @@ float const kStopsContainerHeight = 46;
         [self.delegate autoCompleteSizeDidChange:0];
     }
     
+    GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
+    filter.type = kGMSPlacesAutocompleteTypeFilterNoFilter;
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:self.currentDirectionsModel.northeastBound
+                                                                       coordinate:self.currentDirectionsModel.southwestBound];
+    self.placesFetcher = [[GMSAutocompleteFetcher alloc] initWithBounds:bounds filter:filter];
+    self.placesFetcher.delegate = self;
+    
     [self.placesFetcher sourceTextHasChanged:textField.text];
 }
 
