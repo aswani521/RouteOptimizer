@@ -245,6 +245,12 @@ float const kSearchHeightWithoutStops = 120;
         //[mdvc setupWithSearchPlace:searchPlace];
 
         mdvc.MerchantPlace = searchPlace;
+//        UIColor *navigationColor = [UIColor colorWithRed:0.35 green:0.28 blue:0.83 alpha:1.0];
+        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.35 green:0.28 blue:0.83 alpha:1.0];
+        [self.navigationController setTitle:searchPlace.name ];// title = searchPlace.name];
+        [self.navigationController.navigationBar
+         setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+
         [self.navigationController pushViewController:mdvc animated:YES];
     }];
 }

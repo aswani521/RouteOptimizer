@@ -21,7 +21,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - GoogleMaps (1.11.0)
+  - GoogleMaps (1.11.1)
 
 DEPENDENCIES:
   - ADLivelyCollectionView
@@ -31,6 +31,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ADLivelyCollectionView: 1d96de6cbb87ef45e25ab9fa5ac96f43d36a0a39
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  GoogleMaps: 272cf7e7b8aacf4319eac47d57f3b7d142c0826a
+  GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
 
 COCOAPODS: 0.39.0

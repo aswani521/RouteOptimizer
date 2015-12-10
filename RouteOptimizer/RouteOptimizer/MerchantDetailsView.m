@@ -23,6 +23,7 @@ NSString *const kPhotosBaseUrl= @"https://maps.googleapis.com/maps/api/place/pho
 @property (strong, nonatomic) IBOutlet UILabel *MerchantPhoneNumber;
 @property (strong, nonatomic) IBOutlet UIImageView *MerchantBusinessImg1;
 @property (strong, nonatomic) IBOutlet UIImageView *MerchantBusinessImg2;
+@property (strong, nonatomic) IBOutlet UITextView *PhoneTextView;
 
 @end
 
@@ -58,7 +59,7 @@ NSString *const kPhotosBaseUrl= @"https://maps.googleapis.com/maps/api/place/pho
     self.MerchantAddressLine1.text = self.MerchantPlace.name;
 
     // Fix me
-//    self.MerchantAddressLine2.text = self.MerchantPlace.formattedAddress;
+    self.MerchantAddressLine2.text = self.MerchantPlace.place.formattedAddress;
 
 
     if ([self.MerchantPlace.openNowStatus objectForKey:@"open_now"]>0) {
@@ -67,7 +68,13 @@ NSString *const kPhotosBaseUrl= @"https://maps.googleapis.com/maps/api/place/pho
     else{
         self.MerchantBusinessOpenHoursMessage.text = @"Business: is Closed";
     }
-//    self.MerchantPhoneNumber.text = self.MerchantPlace.phoneNumber;
+//    self.MerchantPhoneNumber.text = self.MerchantPlace.place.phoneNumber;
+    if (self.MerchantPlace.place != nil) {
+        self.PhoneTextView.text = self.MerchantPlace.place.phoneNumber;
+        self.PhoneTextView.dataDetectorTypes = UIDataDetectorTypeAll;
+        self.PhoneTextView.editable = NO;
+    }
+    
     if (self.MerchantPlace.photos.count>0) {
         [ self.MerchantBusinessImg1 setImageWithURL:[self generatePhotoImgNSUrlUsingPhotoReference:[self.MerchantPlace.photos[0] objectForKey:@"photo_reference"]] ];
     }

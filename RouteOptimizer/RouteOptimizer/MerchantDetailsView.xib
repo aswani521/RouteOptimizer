@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
@@ -12,7 +12,7 @@
                 <outlet property="MerchantBusinessImg2" destination="rLb-Ut-C6H" id="LXR-Z4-I2z"/>
                 <outlet property="MerchantBusinessOpenHoursMessage" destination="NTw-HO-BTF" id="gTC-o8-XMK"/>
                 <outlet property="MerchantMapView" destination="6ad-IR-5YT" id="VXR-7T-pMj"/>
-                <outlet property="MerchantPhoneNumber" destination="DrB-xn-bNc" id="v1Z-Ci-F6c"/>
+                <outlet property="PhoneTextView" destination="MjE-fg-KOt" id="XYL-aa-gtk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -153,17 +153,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niZ-gB-mib" userLabel="Call">
                     <rect key="frame" x="0.0" y="278" width="320" height="54"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="ic_qu_direction_mylocation.png" translatesAutoresizingMaskIntoConstraints="NO" id="HOE-3O-TLr">
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="Mobile-Phone-1-icon" translatesAutoresizingMaskIntoConstraints="NO" id="HOE-3O-TLr">
                             <rect key="frame" x="12" y="13" width="24" height="24"/>
                             <animations/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Call Business" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DrB-xn-bNc">
-                            <rect key="frame" x="51" y="18" width="86" height="17"/>
-                            <animations/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MjE-fg-KOt" userLabel="PhoneTextView">
+                            <rect key="frame" x="44" y="6" width="240" height="42"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -200,6 +198,7 @@
         </view>
     </objects>
     <resources>
+        <image name="Mobile-Phone-1-icon" width="256" height="256"/>
         <image name="ic_qu_direction_mylocation.png" width="24" height="24"/>
         <image name="location_marker" width="29" height="48"/>
         <image name="navigation_button" width="34" height="34"/>
